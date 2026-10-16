@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:ThogaiPay.ViewModels.Authentication"
+    xmlns:controls="clr-namespace:ThogaiPay.Controls"
+    x:Class="ThogaiPay.Views.Authentication.OtpVerificationPage"
+    x:DataType="viewModels:OtpVerificationViewModel"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource LoginPageBackground}">
+
+    <ContentPage.Resources>
+        <controls:LoginWaveCardDrawable x:Key="LoginWaveCardDrawable" />
+    </ContentPage.Resources>
+
+    <!-- Match the reference proportions: image/header above, card below. -->
+    <Grid RowDefinitions="0.56*,0.44*" RowSpacing="0">
+
+        <!-- Use the Villupuram-specific background asset here. -->
+        <Image Grid.Row="0"
+               Source="vpm_bg.png"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               InputTransparent="True" />
+
+        <!-- Darken only the scenic header slightly so white text is readable. -->
+        <BoxView Grid.Row="0" Opacity="0.18" InputTransparent="True">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{StaticResource OtpHeaderOverlay}" Offset="0.0" />
+                    <GradientStop Color="{StaticResource OtpHeaderOverlay}" Offset="0.60" />
+                    <GradientStop Color="#00000000" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <!-- Header is on the scenic image, not inside the card. -->
+        <Grid Grid.Row="0"
+              Padding="22,30,22,0"
+              RowDefinitions="Auto,*"
+              ColumnDefinitions="44,*"
+              ZIndex="1">
+
+            <Border Grid.Row="0" Grid.Column="0"
+                    WidthRequest="42" HeightRequest="42"
+                    Padding="0" StrokeShape="RoundRectangle 21"
+                    BackgroundColor="{StaticResource OtpBackChipBackgroundColor}"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start" >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding EditNumberCommand}"/>
+                </Border.GestureRecognizers>
+                <Image Source="arrow-right.png" HeightRequest="20"
+                       WidthRequest="20"/>
+            </Border>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 Grid.ColumnSpan="2"
+                                 Spacing="7"
+                                 Margin="0,24,0,0"
+                                 VerticalOptions="Start">
+                <Label Text="Verify OTP"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <Label Text="We have sent a 6-digit OTP to"
+                       FontSize="13"
+                       TextColor="White" />
+
+                <HorizontalStackLayout Spacing="3" VerticalOptions="Center">
+                    <Label Text="{Binding MaskedMobileNumber}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           VerticalOptions="Center" />
+                    <Button Text="✎"
+                            Command="{Binding EditNumberCommand}"
+                            HeightRequest="26"
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource White}"
+                            FontSize="15"
+                            VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Card begins over the image. The shared drawable supplies the curved top. -->
+        <Grid Grid.Row="1"
+              Margin="0,-50,0,0"
+              ZIndex="2">
+
+            <GraphicsView Drawable="{StaticResource LoginWaveCardDrawable}"
+                          InputTransparent="True" />
+
+            <!-- Card content dimensions/spacing are intentionally compact like the mock. -->
+            <Grid Padding="28,45,28,22">
+                <VerticalStackLayout Spacing="16"
+                                     VerticalOptions="Start">
+
+                    <!-- Six OTP cells -->
+                    <Grid HorizontalOptions="Fill" Margin="0,0,0,0">
+                        <Grid ColumnDefinitions="*,*,*,*,*,*"
+                              ColumnSpacing="7">
+                            <Border Grid.Column="0" Stroke="{StaticResource OtpDigitActiveStrokeColor}" StrokeThickness="1.5"
+                                    StrokeShape="RoundRectangle 10" HeightRequest="52">
+                                <Label Text="{Binding OtpDigit1}" HorizontalOptions="Center"
+                                       VerticalOptions="Center" FontSize="22"
+                                       TextColor="{StaticResource LoginTitleColor}" />
+                            </Border>
+                            <Border Grid.Column="1" Stroke="{StaticResource OtpDigitInactiveStrokeColor}" StrokeThickness="1.3"
+                                    StrokeShape="RoundRectangle 10" HeightRequest="52">
+                                <Label Text="{Binding OtpDigit2}" HorizontalOptions="Center"
+                                       VerticalOptions="Center" FontSize="22" TextColor="{StaticResource LoginTitleColor}" />
+                            </Border>
+                            <Border Grid.Column="2" Stroke="{StaticResource OtpDigitInactiveStrokeColor}" StrokeThickness="1.3"
+                                    StrokeShape="RoundRectangle 10" HeightRequest="52">
+                                <Label Text="{Binding OtpDigit3}" HorizontalOptions="Center"
+                                       VerticalOptions="Center" FontSize="22" TextColor="{StaticResource LoginTitleColor}" />
+                            </Border>
+                            <Border Grid.Column="3" Stroke="{StaticResource OtpDigitInactiveStrokeColor}" StrokeThickness="1.3"
+                                    StrokeShape="RoundRectangle 10" HeightRequest="52">
+                                <Label Text="{Binding OtpDigit4}" HorizontalOptions="Center"
+                                       VerticalOptions="Center" FontSize="22" TextColor="{StaticResource LoginTitleColor}" />
+                            </Border>
+                            <Border Grid.Column="4" Stroke="{StaticResource OtpDigitInactiveStrokeColor}" StrokeThickness="1.3"
+                                    StrokeShape="RoundRectangle 10" HeightRequest="52">
+                                <Label Text="{Binding OtpDigit5}" HorizontalOptions="Center"
+                                       VerticalOptions="Center" FontSize="22" TextColor="{StaticResource LoginTitleColor}" />
+                            </Border>
+                            <Border Grid.Column="5" Stroke="{StaticResource OtpDigitInactiveStrokeColor}" StrokeThickness="1.3"
+                                    StrokeShape="RoundRectangle 10" HeightRequest="52">
+                                <Label Text="{Binding OtpDigit6}" HorizontalOptions="Center"
+                                       VerticalOptions="Center" FontSize="22" TextColor="{StaticResource LoginTitleColor}" />
+                            </Border>
+                        </Grid>
+
+                        <!-- Transparent Entry keeps the current ViewModel binding and numeric keyboard. -->
+                        <Entry x:Name="OtpInputEntry"
+                               Text="{Binding Otp}"
+                               Keyboard="Numeric"
+                               MaxLength="6"
+                               HeightRequest="52"
+                               Opacity="0.02"
+                               BackgroundColor="Transparent"
+                               TextColor="Transparent"
+                               HorizontalTextAlignment="Center"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Fill" />
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnOtpBoxesTapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <!-- Resend status -->
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Spacing="5">
+                        <Label Text="Didn't receive OTP?"
+                               FontSize="12"
+                               TextColor="{StaticResource OtpResendLabelColor}"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding ResendStatusText}"
+                               FontSize="12"
+                               TextColor="{StaticResource OtpActionTextColor}"
+                               VerticalOptions="Center"
+                               IsVisible="{Binding CanResend, Converter={StaticResource InverseBoolConverter}}" />
+                        <controls:SwipeActionButton Text="Swipe to Resend"
+                                                    IsVisible="{Binding CanResend}"
+                                                    ButtonHeight="40"
+                                                    WidthRequest="170"
+                                                    TextStyle="{StaticResource SwipeSecondaryActionTextStyle}"
+                                                    ButtonBackground="{StaticResource OtpPrimaryButtonGradient}"
+                                                    ActionCommand="{Binding ResendOtpCommand}"
+                                                    IsBusy="{Binding IsResending}" />
+                    </HorizontalStackLayout>
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="{StaticResource Danger}"
+                               FontSize="11"
+                               LineBreakMode="WordWrap"
+                               IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+                        <Label Text="{Binding HelperMessage}"
+                               TextColor="{StaticResource Success}"
+                               FontSize="11"
+                               LineBreakMode="WordWrap"
+                               IsVisible="{Binding HelperMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+                    </VerticalStackLayout>
+
+                    <!-- Main action: broad, pill-shaped swipe button. -->
+                    <controls:SwipeActionButton Text="Swipe to Verify OTP"
+                                                ButtonHeight="54"
+                                                ButtonBackground="{StaticResource OtpPrimaryButtonGradient}"
+                                                ThumbIconSource="arrow_right.png"
+                                                TextStyle="{StaticResource LoginPrimaryActionTextStyle}"
+                                                ActionCommand="{Binding VerifyCommand}"
+                                                IsBusy="{Binding IsVerifying}" />
+
+                    <!-- Security callout is the only panel below the button in the reference. -->
+                    <Border BackgroundColor="{StaticResource OtpSecurityPanelBackgroundColor}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 20"
+                            Padding="12,13">
+                        <Grid ColumnDefinitions="62,*" ColumnSpacing="12">
+                            <Border Grid.Column="0"
+                                    WidthRequest="62" HeightRequest="62"
+                                    BackgroundColor="{StaticResource LoginSecurityIconBackgroundColor}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 31"
+                                    VerticalOptions="Center">
+                                <Image Source="shield_check.png"
+                                       WidthRequest="29" HeightRequest="29"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="4"
+                                                 VerticalOptions="Center">
+                                <Label Text="Your information is safe with us"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource OtpSecurityTextColor}"
+                                       LineBreakMode="WordWrap" />
+                                <Label Text="We use industry standard security to protect your data."
+                                       FontSize="11"
+                                       TextColor="{StaticResource OtpSecuritySubTextColor}"
+                                       LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

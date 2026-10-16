@@ -1,0 +1,22 @@
+{
+  "screen": "ContactSupport",
+  "sharedLogo": [
+    "../../00_Shared/Logo/thogaipay-mark.svg",
+    "../../00_Shared/Logo/thogaipay-wordmark.svg"
+  ],
+  "icons": [
+    "../../00_Shared/Icons/home.svg",
+    "../../00_Shared/Icons/mobile.svg",
+    "../../00_Shared/Icons/dth.svg",
+    "../../00_Shared/Icons/heart.svg",
+    "../../00_Shared/Icons/history.svg",
+    "../../00_Shared/Icons/profile.svg",
+    "../../00_Shared/Icons/search.svg",
+    "../../00_Shared/Icons/filter.svg",
+    "../../00_Shared/Icons/calendar.svg",
+    "../../00_Shared/Icons/help-circle.svg",
+    "../../00_Shared/Icons/settings.svg",
+    "../../00_Shared/Icons/plus.svg"
+  ],
+  "images": []
+}

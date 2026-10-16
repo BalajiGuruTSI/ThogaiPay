@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:ThogaiPay.ViewModels.Authentication"
+    xmlns:controls="clr-namespace:ThogaiPay.Controls"
+    x:Class="ThogaiPay.Views.Authentication.LoginPage"
+    x:DataType="viewModels:LoginViewModel"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource LoginPageBackground}">
+
+    <ContentPage.Resources>
+        <!-- Custom drawable creates the asymmetric wave top edge. -->
+        <controls:LoginWaveCardDrawable x:Key="LoginWaveCardDrawable" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="0.54*,0.46*"
+          RowSpacing="0"
+          BackgroundColor="{StaticResource LoginPageBackground}">
+
+        <!-- Scenic image spans the header and the area behind the card. -->
+        <Grid Grid.Row="0" InputTransparent="True">
+            <Image Source="vpm_bg.png"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Fill" />
+
+            <BoxView VerticalOptions="Start"
+                     HeightRequest="330"
+                     Opacity="0.16">
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{StaticResource LoginHeaderOverlay}" Offset="0.0" />
+                        <GradientStop Color="{StaticResource LoginHeaderOverlay}" Offset="0.55" />
+                        <GradientStop Color="#00000000" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+        </Grid>
+
+        <!-- Brand area -->
+        <Grid Grid.Row="0"
+              Padding="24,28,24,58"
+              ColumnDefinitions="*,Auto"
+              RowDefinitions="Auto,*"
+              ZIndex="0">
+
+            <Grid Grid.Row="0"
+                  Grid.Column="0"
+                  ColumnDefinitions="46,*"
+                  ColumnSpacing="10"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start">
+                <Image Grid.Column="0"
+                       Source="thogaipay_mark.png"
+                       WidthRequest="46"
+                       HeightRequest="46"
+                       Aspect="AspectFit"
+                       VerticalOptions="Center" />
+
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="1"
+                                     VerticalOptions="Center">
+                    <Label Text="ThogaiPay"
+                           FontSize="23"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="நம் மக்கள் | நம் பணம்"
+                           FontSize="12"
+                           TextColor="White" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="10,7"
+                    BackgroundColor="{StaticResource LoginLanguageChipBackgroundColor}"
+                    Stroke="{StaticResource LoginLanguageChipBorderColor}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    VerticalOptions="Start">
+                <HorizontalStackLayout Spacing="6">
+                    <Image Source="globe.png"
+                           HeightRequest="15"
+                           WidthRequest="15"
+                           VerticalOptions="Center" />
+                    <Label Text="EN | TA"
+                           FontSize="12"
+                           TextColor="White"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
+
+        <!--
+          Wave card: GraphicsView draws one continuous card shape with an
+          asymmetric curved top, rounded lower corners, border and shadow.
+          All login controls are placed above it; no ScrollView is used.
+        -->
+        <Grid Grid.Row="1"
+              Margin="14,-106,14,10"
+              ZIndex="2">
+
+            <GraphicsView Drawable="{StaticResource LoginWaveCardDrawable}"
+                          InputTransparent="True" />
+
+            <Grid Padding="24,30,24,18">
+                <VerticalStackLayout Spacing="11"
+                                     VerticalOptions="Center">
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Welcome Back! 👋"
+                               FontSize="25"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource LoginTitleColor}"
+                               LineBreakMode="WordWrap" />
+                        <Label Text="Login to your ThogaiPay account&#10;to continue"
+                               FontSize="14"
+                               TextColor="{StaticResource LoginSecondaryTextColor}"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+
+                    <!-- Mobile number field -->
+                    <controls:FloatingLabelEntry Margin="0,3,0,0"
+                                                 Text="{Binding MobileNumber}"
+                                                 LabelText="Mobile Number"
+                                                 Placeholder="Enter your mobile number"
+                                                 IconSource="phone.png"
+                                                 PrefixText="+91"
+                                                 Keyboard="Telephone"
+                                                 MaxLength="10"
+                                                 FieldHeight="56"
+                                                 FieldCornerRadius="20"
+                                                 FieldBorderColor="{StaticResource LoginFieldBorderColor}"
+                                                 FieldDividerColor="{StaticResource LoginFieldDividerColor}"
+                                                 EntryTextColor="{StaticResource LoginTitleColor}"
+                                                 EntryPlaceholderColor="{StaticResource LoginPlaceholderColor}"
+                                                 LabelTextColor="{StaticResource LoginFloatingLabelColor}"
+                                                 LabelBackgroundColor="{StaticResource LoginFloatingLabelBackgroundColor}" />
+
+                    <!-- Existing ViewModel validation bindings -->
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="{StaticResource LoginErrorColor}"
+                               FontSize="11"
+                               LineBreakMode="WordWrap"
+                               IsVisible="{Binding ErrorMessage,
+                                   Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+                        <Label Text="{Binding HelperMessage}"
+                               TextColor="{StaticResource Success}"
+                               FontSize="11"
+                               LineBreakMode="WordWrap"
+                               IsVisible="{Binding HelperMessage,
+                                   Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+                    </VerticalStackLayout>
+
+                    <controls:SwipeActionButton Text="Swipe to Send OTP"
+                                                ButtonHeight="54"
+                                                ButtonBackground="{StaticResource LoginPrimaryButtonGradient}"
+                                                ThumbIconSource="arrow_right.png"
+                                                TextStyle="{StaticResource LoginPrimaryActionTextStyle}"
+                                                ActionCommand="{Binding LoginCommand}"
+                                                IsBusy="{Binding IsBusy}" />
+                  
+                    <!-- OR divider -->
+                    <Grid ColumnDefinitions="*,Auto,*"
+                          VerticalOptions="Center">
+                        <BoxView Grid.Column="0"
+                                 HeightRequest="1"
+                                 Color="{StaticResource LoginOrDividerColor}"
+                                 VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Text="OR"
+                               Margin="13,0"
+                               FontSize="12"
+                               TextColor="{StaticResource LoginSecondaryTextColor}"
+                               VerticalOptions="Center" />
+                        <BoxView Grid.Column="2"
+                                 HeightRequest="1"
+                                 Color="{StaticResource LoginOrDividerColor}"
+                                 VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Visual only until connected to a real Google sign-in command. -->
+                    <Border HeightRequest="48"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource LoginGoogleBorderColor}"
+                            StrokeThickness="1.2"
+                            StrokeShape="RoundRectangle 17">
+                        <HorizontalStackLayout Spacing="9"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                            <Image Source="google_g.png"
+                                   WidthRequest="21"
+                                   HeightRequest="21"
+                                   Aspect="AspectFit" />
+                            <Label Text="Continue with Google"
+                                   FontSize="14"
+                                   TextColor="{StaticResource LoginTitleColor}"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- Security panel -->
+                    <Border Padding="9"
+                            BackgroundColor="{StaticResource LoginSecurityPanelBackgroundColor}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 18">
+                        <Grid ColumnDefinitions="44,*"
+                              ColumnSpacing="10">
+                            <Border Grid.Column="0"
+                                    WidthRequest="44"
+                                    HeightRequest="44"
+                                    BackgroundColor="{StaticResource LoginSecurityIconBackgroundColor}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 22"
+                                    VerticalOptions="Center">
+                                <Image Source="shield_check.png"
+                                       WidthRequest="24"
+                                       HeightRequest="24"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="3"
+                                                 VerticalOptions="Center">
+                                <Label Text="100% Secure &amp; Trusted"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource LoginSecurityTextColor}"
+                                       LineBreakMode="WordWrap" />
+                                <Label Text="Your data is protected with industry standard security."
+                                       FontSize="10"
+                                       TextColor="{StaticResource LoginSecondaryTextColor}"
+                                       LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <Label Text="Made with ❤️ for Tamil Nadu"
+                           FontSize="11"
+                           TextColor="{StaticResource LoginSecondaryTextColor}"
+                           HorizontalTextAlignment="Center"
+                           Margin="0,0,0,0" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

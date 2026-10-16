@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ThogaiPay.Controls"
+             x:Class="ThogaiPay.Views.Recharge.MobileRechargePage"
+             x:Name="RootPage"
+             BackgroundColor="{StaticResource Gray100}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid HeightRequest="220">
+            <Image Source="tamil_sunset_temple_header.svg" Aspect="AspectFill" />
+            <Grid Padding="18,48,18,16" RowDefinitions="Auto,Auto" RowSpacing="14">
+                <HorizontalStackLayout Spacing="10">
+                    <Label Text="Mobile Recharge"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <Label Grid.Row="1"
+                       Text="Choose operator and best plan"
+                       FontSize="13"
+                       TextColor="White" />
+            </Grid>
+        </Grid>
+
+        <ScrollView Grid.Row="1" Margin="0,-70,0,0">
+            <VerticalStackLayout Spacing="14" Padding="14,0,14,10">
+                <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="14">
+                    <VerticalStackLayout Spacing="10">
+                        <controls:FloatingLabelEntry LabelText="Mobile Number"
+                                                     Placeholder="Enter mobile number"
+                                                     IconSource="phone.svg"
+                                                     Keyboard="Telephone"
+                                                     MaxLength="10"
+                                                     FieldHeight="48"
+                                                     FieldCornerRadius="12"
+                                                     FieldPadding="12,0"
+                                                     FieldBorderColor="{StaticResource Gray200}"
+                                                     FieldDividerColor="{StaticResource Gray200}"
+                                                     LabelTextColor="{StaticResource Gray500}" />
+
+                        <Label Text="Select Operator" FontSize="13" TextColor="{StaticResource Gray500}" />
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <Border BackgroundColor="#EEF4FC" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10,12">
+                                <Label Text="Airtel" HorizontalTextAlignment="Center" TextColor="{StaticResource Gray900}" FontAttributes="Bold" />
+                            </Border>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource Primary}" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="10,12">
+                                <Label Text="Jio" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" />
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="14">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Popular Plans" FontSize="17" FontAttributes="Bold" TextColor="{StaticResource Gray900}" />
+
+                        <Border Stroke="#D7E2F3" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,10">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="4">
+                                <Label Text="₹239 - 24 days" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Gray900}" />
+                                <Label Grid.Column="1" Text="1.5GB/day" TextColor="{StaticResource Primary}" FontAttributes="Bold" />
+                                <Label Grid.Row="1" Text="Unlimited calls + 100 SMS/day" FontSize="12" TextColor="{StaticResource Gray500}" />
+                            </Grid>
+                        </Border>
+
+                        <Border Stroke="#D7E2F3" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="12,10">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="4">
+                                <Label Text="₹299 - 28 days" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Gray900}" />
+                                <Label Grid.Column="1" Text="2GB/day" TextColor="{StaticResource Primary}" FontAttributes="Bold" />
+                                <Label Grid.Row="1" Text="Unlimited calls + Disney+ Hotstar" FontSize="12" TextColor="{StaticResource Gray500}" />
+                            </Grid>
+                        </Border>
+
+                        <controls:SwipeActionButton Text="Swipe to Recharge"
+                                                    ButtonHeight="52"
+                                                    TextStyle="{StaticResource LoginPrimaryActionTextStyle}"
+                                                    ActionCommand="{Binding Source={x:Reference RootPage}, Path=RechargeNowCommand}"
+                                                    IsBusy="{Binding Source={x:Reference RootPage}, Path=IsPrimaryActionBusy}">
+                            <controls:SwipeActionButton.ButtonBackground>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#14D3D8" Offset="0" />
+                                    <GradientStop Color="#125CD8" Offset="1" />
+                                </LinearGradientBrush>
+                            </controls:SwipeActionButton.ButtonBackground>
+                        </controls:SwipeActionButton>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
