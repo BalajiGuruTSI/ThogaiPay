@@ -92,4 +92,10 @@
     <Color x:Key="ThogaiBackground">#F4F8FF</Color>
     <Color x:Key="ThogaiSurface">#FFFFFF</Color>
     <Color x:Key="ThogaiBorder">#DCE7F6</Color>
+
+    <Color x:Key="QuickRechargeSearchBackground">#FFFFFF</Color>
+    <Color x:Key="QuickRechargeSearchBorder">#DCE8F7</Color>
+    <Color x:Key="QuickRechargeSearchPlaceholder">#7583A0</Color>
+    <Color x:Key="QuickRechargeSearchText">#14245B</Color>
+
 </ResourceDictionary>

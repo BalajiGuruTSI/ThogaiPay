@@ -4,135 +4,151 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="ThogaiPay.Controls.AppBrandedHeader"
     x:Name="HeaderRoot"
-    HeightRequest="240"
-    MinimumHeightRequest="200"
-    HorizontalOptions="Fill"
-    VerticalOptions="Start"
-    IsClippedToBounds="True">
+    HeightRequest="150">
 
-    <Grid RowDefinitions="*" RowSpacing="0">
-
-        <!-- Scenic Tamil Nadu background -->
+    <Grid>
+        <!-- Screen-specific scenic background and handwritten tagline -->
         <Image
-            Source="vpm_bg.png"
-            Aspect="AspectFill"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill" />
+            Source="{Binding Source={x:Reference HeaderRoot},
+                             Path=HeaderImageSource}"
+            Aspect="AspectFill" />
 
-        <!-- Light overlay improves white text readability -->
-        <BoxView InputTransparent="True">
-            <BoxView.Background>
-                <LinearGradientBrush
-                    StartPoint="0,0"
-                    EndPoint="0,1">
-                    <GradientStop Color="#50102D65" Offset="0.0" />
-                    <GradientStop Color="#20102D65" Offset="0.55" />
-                    <GradientStop Color="#00102D65" Offset="1.0" />
-                </LinearGradientBrush>
-            </BoxView.Background>
-        </BoxView>
+        <!-- Subtle overlay to preserve logo readability -->
+        <BoxView
+            BackgroundColor="#160B2C70"
+            InputTransparent="True" />
 
-        <!-- Header content -->
         <Grid
-            Padding="20,44,20,42"
+            Padding="16,38,16,14"
             RowDefinitions="Auto,*"
             RowSpacing="0">
 
+            <!-- Top brand row -->
             <Grid
+                Grid.Row="0"
                 ColumnDefinitions="Auto,*,Auto"
-                ColumnSpacing="11"
-                VerticalOptions="Start">
+                ColumnSpacing="10">
 
-                <!-- ThogaiPay logo -->
-                <Image
-                    Grid.Column="0"
-                    Source="thogaipay_mark.png"
-                    WidthRequest="46"
-                    HeightRequest="46"
-                    Aspect="AspectFit"
-                    VerticalOptions="Center" />
-
-                <!-- Brand name and Tamil tagline -->
-                <VerticalStackLayout
-                    Grid.Column="1"
-                    Spacing="3"
+                <!-- Optional back button -->
+                <Border
+                    IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                        Path=ShowBackButton}"
+                    WidthRequest="42"
+                    HeightRequest="42"
+                    BackgroundColor="#F5FFFFFF"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 21"
                     VerticalOptions="Center">
 
-                    <HorizontalStackLayout Spacing="0">
-                        <Label
-                            Text="{Binding Source={x:Reference HeaderRoot},
-                                           Path=TitleText}"
-                            FontSize="23"
-                            FontFamily="OpenSansSemibold"
-                            TextColor="White"
-                            LineBreakMode="NoWrap"
-                            VerticalOptions="Center" />
-
-                        <Label
-                            Text="{Binding Source={x:Reference HeaderRoot},
-                                           Path=AccentTitleText}"
-                            FontSize="23"
-                            FontFamily="OpenSansSemibold"
-                            TextColor="#35E6FF"
-                            LineBreakMode="NoWrap"
-                            VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-
                     <Label
-                        Text="{Binding Source={x:Reference HeaderRoot},
-                                       Path=SubtitleText}"
-                        FontSize="11"
-                        FontFamily="OpenSansRegular"
-                        TextColor="White"
-                        Opacity="0.96"
-                        LineBreakMode="TailTruncation"
-                        MaxLines="2" />
+                        Text="‹"
+                        FontSize="34"
+                        TextColor="#101C58"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Margin="0,-4,0,0" />
 
-                </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference HeaderRoot},
+                                              Path=BackCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
 
-                <!-- Profile button -->
+                <!-- Approved logo and app name -->
+                <HorizontalStackLayout
+                    Grid.Column="1"
+                    IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                        Path=ShowBrand}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="8">
+
+                    <Image
+                        Source="{Binding Source={x:Reference HeaderRoot},
+                                         Path=LogoSource}"
+                        WidthRequest="42"
+                        HeightRequest="42"
+                        Aspect="AspectFit"
+                        VerticalOptions="Center" />
+
+                    <VerticalStackLayout
+                        Spacing="0"
+                        VerticalOptions="Center">
+
+                        <HorizontalStackLayout Spacing="0">
+                            <Label
+                                Text="Thogai"
+                                FontSize="21"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="Pay"
+                                FontSize="21"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="#35E6FF" />
+                        </HorizontalStackLayout>
+
+                        <Label
+                            Text="Recharge Simplified"
+                            FontSize="10"
+                            TextColor="White"
+                            Opacity="0.96" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- Optional right-side action -->
                 <Border
                     Grid.Column="2"
                     IsVisible="{Binding Source={x:Reference HeaderRoot},
                                         Path=ShowProfileButton}"
-                    WidthRequest="44"
-                    HeightRequest="44"
-                    BackgroundColor="#F7FFFFFF"
-                    Stroke="#45FFFFFF"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 22"
+                    WidthRequest="42"
+                    HeightRequest="42"
+                    BackgroundColor="#F5FFFFFF"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 21"
                     VerticalOptions="Center">
+
+                    <Image
+                        Source="profile.svg"
+                        WidthRequest="22"
+                        HeightRequest="22"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
 
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding Source={x:Reference HeaderRoot},
                                               Path=ProfileCommand}" />
                     </Border.GestureRecognizers>
-
-                    <Image
-                        Source="profile.svg"
-                        WidthRequest="22"
-                        HeightRequest="22"
-                        Aspect="AspectFit"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center" />
                 </Border>
-
             </Grid>
+
+            <!-- Optional page title and subtitle -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                    Path=ShowPageTitle}"
+                VerticalOptions="End"
+                Spacing="2"
+                Margin="0,8,0,0">
+
+                <Label
+                    Text="{Binding Source={x:Reference HeaderRoot},
+                                   Path=PageTitle}"
+                    FontSize="21"
+                    FontFamily="OpenSansSemibold"
+                    TextColor="White" />
+
+                <Label
+                    Text="{Binding Source={x:Reference HeaderRoot},
+                                   Path=Subtitle}"
+                    FontSize="12"
+                    TextColor="White"
+                    Opacity="0.96" />
+            </VerticalStackLayout>
+
         </Grid>
-
-        <!-- Curved lower transition.
-             The rounded shape intentionally stays flat: no elevation/shadow. -->
-        <Border
-            VerticalOptions="End"
-            HorizontalOptions="Fill"
-            HeightRequest="26"
-            Margin="0,0,0,-1"
-            BackgroundColor="{AppThemeBinding Light=#F4F8FF,
-                                              Dark=#101827}"
-            StrokeThickness="0"
-            StrokeShape="RoundRectangle 26,26,0,0"
-            InputTransparent="True" />
-
     </Grid>
 </ContentView>
