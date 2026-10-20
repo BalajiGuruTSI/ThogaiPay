@@ -51,7 +51,7 @@ public sealed class SplashPage : ContentPage
             Microsoft.Maui.Controls.Application.Current.Windows[0].Page = shell;
         }
 
-        if (authService?.IsAuthenticated == true)
+        if (authService?.IsAuthenticated != true)
         {
             await shell.GoToAsync("//MainPage");
             return;

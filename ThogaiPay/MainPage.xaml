@@ -10,9 +10,23 @@
     <Grid RowDefinitions="*">
         <ScrollView Grid.Row="0">
             <VerticalStackLayout Spacing="0">
-                <controls:AppBrandedHeader ProfileCommand="{Binding Source={x:Reference RootPage}, Path=ProfileCommand}" />
 
-                <Border Margin="14,-90,14,0" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="16,14">
+                <controls:AppBrandedHeader
+    HeaderImageSource="header_home.png"
+    LogoSource="thogaipay_mark_brand.svg"
+    ShowBrand="False"
+    ShowBackButton="False"
+    ShowProfileButton="False"
+    ProfileCommand="{Binding OpenProfileCommand}" />
+
+                <controls:QuickRechargeSearchBar
+                    Margin="10,-25"
+    Text="{Binding SearchText, Mode=TwoWay}"
+    Placeholder="Search mobile number or contact"
+    SearchCommand="{Binding SearchCommand}"
+    PickContactCommand="{Binding PickContactCommand}" />
+
+                <!--<Border Margin="14,-90,14,0" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="16,14">
                     <VerticalStackLayout Spacing="4">
                         <Label Text="Vanakkam!" FontSize="13" TextColor="{StaticResource Gray500}" />
                         <Label Text="Ready to recharge?" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource Gray900}" />
@@ -111,9 +125,9 @@
                         </VerticalStackLayout>
                         <Label Grid.Column="2" Text="₹299" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Success}" VerticalOptions="Center" />
                     </Grid>
-                </Border>
+                </Border>-->
             </VerticalStackLayout>
         </ScrollView>
-
+        <controls:SoftPillBottomBar Grid.Row="1" ActiveTab="Home" VerticalOptions="End"/>
     </Grid>
 </ContentPage>

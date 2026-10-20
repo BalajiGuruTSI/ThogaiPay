@@ -30,7 +30,7 @@
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 25"
                         Padding="4,5">
-                        <VerticalStackLayout Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
                             <Image Source="home.svg"
                                    WidthRequest="23" HeightRequest="23"
                                    Opacity="{Binding Source={x:Reference BarRoot}, Path=HomeOpacity}" />
@@ -39,10 +39,10 @@
                                    TextColor="{Binding Source={x:Reference BarRoot}, Path=HomeColor}"
                                    HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HomeCommand}" />
+                        </Border.GestureRecognizers>
                     </Border>
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HomeCommand}" />
-                    </Grid.GestureRecognizers>
                 </Grid>
 
                 <!-- Recharge -->
@@ -52,7 +52,7 @@
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 25"
                         Padding="4,5">
-                        <VerticalStackLayout Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
                             <Image Source="mobile.svg"
                                    WidthRequest="23" HeightRequest="23"
                                    Opacity="{Binding Source={x:Reference BarRoot}, Path=RechargeOpacity}" />
@@ -61,10 +61,10 @@
                                    TextColor="{Binding Source={x:Reference BarRoot}, Path=RechargeColor}"
                                    HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=RechargeCommand}" />
+                        </Border.GestureRecognizers>
                     </Border>
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=RechargeCommand}" />
-                    </Grid.GestureRecognizers>
                 </Grid>
 
                 <!-- Reserved space beneath the floating logo -->
@@ -77,7 +77,7 @@
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 25"
                         Padding="4,5">
-                        <VerticalStackLayout Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
                             <Image Source="history.svg"
                                    WidthRequest="23" HeightRequest="23"
                                    Opacity="{Binding Source={x:Reference BarRoot}, Path=HistoryOpacity}" />
@@ -86,10 +86,10 @@
                                    TextColor="{Binding Source={x:Reference BarRoot}, Path=HistoryColor}"
                                    HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HistoryCommand}" />
+                        </Border.GestureRecognizers>
                     </Border>
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HistoryCommand}" />
-                    </Grid.GestureRecognizers>
                 </Grid>
 
                 <!-- Profile -->
@@ -99,7 +99,7 @@
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 25"
                         Padding="4,5">
-                        <VerticalStackLayout Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
                             <Image Source="profile.svg"
                                    WidthRequest="23" HeightRequest="23"
                                    Opacity="{Binding Source={x:Reference BarRoot}, Path=ProfileOpacity}" />
@@ -108,10 +108,10 @@
                                    TextColor="{Binding Source={x:Reference BarRoot}, Path=ProfileColor}"
                                    HorizontalTextAlignment="Center" />
                         </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=ProfileCommand}" />
+                        </Border.GestureRecognizers>
                     </Border>
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=ProfileCommand}" />
-                    </Grid.GestureRecognizers>
                 </Grid>
             </Grid>
         </Border>
@@ -131,6 +131,7 @@
                 WidthRequest="46"
                 HeightRequest="46"
                 Aspect="AspectFit"
+                InputTransparent="True"
                 HorizontalOptions="Center"
                 VerticalOptions="Center" />
             <Border.GestureRecognizers>

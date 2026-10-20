@@ -9,6 +9,8 @@ public partial class SoftPillBottomBar : ContentView
     private const string ActivePill = "#E5F0FF";
     private const string Transparent = "#00FFFFFF";
 
+    private Shell? _subscribedShell;
+
     public static readonly BindableProperty ActiveTabProperty = BindableProperty.Create(
         nameof(ActiveTab), typeof(string), typeof(SoftPillBottomBar), "Home",
         propertyChanged: OnActiveTabChanged);
@@ -69,6 +71,79 @@ public partial class SoftPillBottomBar : ContentView
     public SoftPillBottomBar()
     {
         InitializeComponent();
+
+        // Defaults make the component usable without a page-specific ViewModel.
+        HomeCommand = new Command(async () => await NavigateToAsync("//MainTabs/MainPage"));
+        RechargeCommand = new Command(async () => await NavigateToAsync("//MainTabs/RechargePage"));
+        HistoryCommand = new Command(async () => await NavigateToAsync("//MainTabs/HistoryPage"));
+        ProfileCommand = new Command(async () => await NavigateToAsync("//MainTabs/ProfilePage"));
+
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private static async Task NavigateToAsync(string route)
+    {
+        var shell = Shell.Current;
+        if (shell is null)
+            return;
+
+        try
+        {
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                await shell.GoToAsync(route, animate: false);
+            });
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[SoftPillBottomBar] Navigation to '{route}' failed: {ex}");
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+                await Shell.Current.DisplayAlert("Navigation error", $"Couldn't open this section. Details: {ex.Message}", "OK"));
+        }
+    }
+
+    private void OnLoaded(object? sender, EventArgs e)
+    {
+        var shell = Shell.Current;
+        if (shell is null)
+            return;
+
+        if (_subscribedShell is not null)
+            _subscribedShell.Navigated -= OnShellNavigated;
+
+        _subscribedShell = shell;
+        _subscribedShell.Navigated += OnShellNavigated;
+        UpdateActiveTab(shell.CurrentState.Location.OriginalString);
+    }
+
+    private void OnUnloaded(object? sender, EventArgs e)
+    {
+        if (_subscribedShell is not null)
+        {
+            _subscribedShell.Navigated -= OnShellNavigated;
+            _subscribedShell = null;
+        }
+    }
+
+    private void OnShellNavigated(object? sender, ShellNavigatedEventArgs e)
+    {
+        UpdateActiveTab(e.Current.Location.OriginalString);
+    }
+
+    private void UpdateActiveTab(string? location)
+    {
+        if (string.IsNullOrWhiteSpace(location))
+            return;
+
+        if (location.Contains("RechargePage", StringComparison.OrdinalIgnoreCase))
+            ActiveTab = "Recharge";
+        else if (location.Contains("HistoryPage", StringComparison.OrdinalIgnoreCase))
+            ActiveTab = "History";
+        else if (location.Contains("ProfilePage", StringComparison.OrdinalIgnoreCase))
+            ActiveTab = "Profile";
+        else if (location.Contains("MainPage", StringComparison.OrdinalIgnoreCase))
+            ActiveTab = "Home";
     }
 
     private bool IsActive(string tab) =>
@@ -79,19 +154,14 @@ public partial class SoftPillBottomBar : ContentView
         if (bindable is not SoftPillBottomBar bar)
             return;
 
-        bar.OnPropertyChanged(nameof(HomeColor));
-        bar.OnPropertyChanged(nameof(RechargeColor));
-        bar.OnPropertyChanged(nameof(HistoryColor));
-        bar.OnPropertyChanged(nameof(ProfileColor));
-
-        bar.OnPropertyChanged(nameof(HomeBackground));
-        bar.OnPropertyChanged(nameof(RechargeBackground));
-        bar.OnPropertyChanged(nameof(HistoryBackground));
-        bar.OnPropertyChanged(nameof(ProfileBackground));
-
-        bar.OnPropertyChanged(nameof(HomeOpacity));
-        bar.OnPropertyChanged(nameof(RechargeOpacity));
-        bar.OnPropertyChanged(nameof(HistoryOpacity));
-        bar.OnPropertyChanged(nameof(ProfileOpacity));
+        foreach (var property in new[]
+        {
+            nameof(HomeColor), nameof(RechargeColor), nameof(HistoryColor), nameof(ProfileColor),
+            nameof(HomeBackground), nameof(RechargeBackground), nameof(HistoryBackground), nameof(ProfileBackground),
+            nameof(HomeOpacity), nameof(RechargeOpacity), nameof(HistoryOpacity), nameof(ProfileOpacity)
+        })
+        {
+            bar.OnPropertyChanged(property);
+        }
     }
 }

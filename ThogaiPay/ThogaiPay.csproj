@@ -83,6 +83,12 @@
 	  <MauiXaml Update="Controls\FloatingLabelEntry.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\QuickRechargeSearchBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\SoftPillBottomBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\SwipeActionButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
