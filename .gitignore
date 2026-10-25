@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/ThogaiPay.Application/bin/Debug/net10.0
+/src/ThogaiPay.Application/obj
+/src/ThogaiPay.Domain/bin/Debug/net10.0
+/src/ThogaiPay.Domain/obj
+/src/ThogaiPay.Infrastructure/bin/Debug/net10.0
+/src/ThogaiPay.Infrastructure/obj
+/tests/ThogaiPay.ArchitectureTests/bin
+/tests/ThogaiPay.ArchitectureTests/obj

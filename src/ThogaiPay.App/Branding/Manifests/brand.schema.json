@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ThogaiPay Brand Manifest",
+  "type": "object",
+  "required": ["brandId", "displayName", "appId", "colors"],
+  "properties": {
+    "brandId": { "type": "string", "minLength": 1 },
+    "displayName": { "type": "string", "minLength": 1 },
+    "appId": { "type": "string", "minLength": 1 },
+    "urlScheme": { "type": "string" },
+    "colors": {
+      "type": "object",
+      "required": ["primary", "secondary", "surface", "background", "success", "warning"],
+      "properties": {
+        "primary": { "type": "string" },
+        "secondary": { "type": "string" },
+        "surface": { "type": "string" },
+        "background": { "type": "string" },
+        "success": { "type": "string" },
+        "warning": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+  "brandId": "thogaipay-default",
+  "displayName": "ThogaiPay",
+  "appId": "com.companyname.thogaipay.app",
+  "urlScheme": "thogaipay",
+  "colors": {
+    "primary": "#512BD4",
+    "secondary": "#DFD8F7",
+    "surface": "#FFFFFF",
+    "background": "#F8F8F8",
+    "success": "#2E7D32",
+    "warning": "#ED6C02"
+  }
+}

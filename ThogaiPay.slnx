@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ThogaiPay.App/ThogaiPay.App.csproj" />
+    <Project Path="src/ThogaiPay.Application/ThogaiPay.Application.csproj" />
+    <Project Path="src/ThogaiPay.Domain/ThogaiPay.Domain.csproj" />
+    <Project Path="src/ThogaiPay.Infrastructure/ThogaiPay.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ThogaiPay.ArchitectureTests/ThogaiPay.ArchitectureTests.csproj" />
+  </Folder>
+</Solution>
