@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ThogaiPay.Controls"
+             xmlns:vm="clr-namespace:ThogaiPay.ViewModels.Authentication"
+             x:Class="ThogaiPay.Views.Authentication.PinUnlockPage"
+             x:DataType="vm:PinUnlockViewModel"
+             Shell.NavBarIsVisible="False" BackgroundColor="#F7FAFF">
+    <VerticalStackLayout Padding="24,42,24,28" Spacing="0">
+        <Image Source="thogaipay_mark.png" HeightRequest="90" Aspect="AspectFit" HorizontalOptions="Center" />
+        <Label Margin="0,22,0,0" Text="Welcome back" FontSize="26" FontAttributes="Bold" TextColor="#0B2D78" HorizontalTextAlignment="Center" />
+        <Label Margin="0,8,0,0" Text="Enter your PIN to unlock ThogaiPay." FontSize="14" TextColor="#66799A" HorizontalTextAlignment="Center" />
+        <Border Margin="0,34,0,0" Padding="14" BackgroundColor="White" Stroke="#DCE7F6" StrokeShape="RoundRectangle 18">
+            <Entry Text="{Binding Pin, Mode=TwoWay}" Keyboard="Numeric" MaxLength="4" IsPassword="True" Placeholder="••••" FontSize="26" HorizontalTextAlignment="Center" AutomationProperties.Name="Four digit PIN" />
+        </Border>
+        <Label Margin="2,9,2,0" Text="{Binding ErrorMessage}" TextColor="#D92D20" FontSize="12" IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+        <controls:CTAButton Margin="0,22,0,0"
+                            Text="Unlock"
+                            BusyText="Unlocking..."
+                            Command="{Binding UnlockCommand}"
+                            IsBusy="{Binding IsBusy}"
+                            Variant="Primary"
+                            TrailingIcon="→"
+                            AccessibilityLabel="Unlock ThogaiPay"
+                            AutomationIdentifier="PinUnlock_Unlock" />
+        <controls:CTAButton Margin="0,12,0,0"
+                            Text="Forgot PIN? Verify your number"
+                            Command="{Binding ForgotPinCommand}"
+                            Variant="Text"
+                            AccessibilityLabel="Recover access by verifying your mobile number"
+                            AutomationIdentifier="PinUnlock_ForgotPin" />
+    </VerticalStackLayout>
+</ContentPage>

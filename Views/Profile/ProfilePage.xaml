@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:MainTabPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:ThogaiPay"
+    xmlns:controls="clr-namespace:ThogaiPay.Controls"
+    x:Class="ThogaiPay.Views.Profile.ProfilePage"
+    BackgroundColor="#F4F9FD"
+    Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout>
+        <controls:AppBrandedHeader
+HeaderImageSource="header_profile.png"
+LogoSource="thogaipay_mark_brand.svg"
+ShowBrand="False"
+ShowBackButton="False"
+ShowProfileButton="False"
+ProfileCommand="{Binding OpenProfileCommand}" />
+        <!-- Profile identity card overlaps the branded header -->
+        <Border Margin="10,-40,10,0" Padding="18,18"
+  BackgroundColor="White" Stroke="#E0ECF8" StrokeThickness="1.3"
+  StrokeShape="RoundRectangle 28">
+            <Grid ColumnDefinitions="94,*,Auto" ColumnSpacing="13">
+                <Grid WidthRequest="88" HeightRequest="88" VerticalOptions="Center">
+                    <Border WidthRequest="88" HeightRequest="88" BackgroundColor="#E5F7F1"
+              Stroke="#D7E9FF" StrokeThickness="4" StrokeShape="RoundRectangle 44">
+                        <Image Source="profile_karthik.png" Aspect="AspectFill" />
+                    </Border>
+                    <Border WidthRequest="30" HeightRequest="30" BackgroundColor="#07965B"
+              Stroke="White" StrokeThickness="2" StrokeShape="RoundRectangle 15"
+              HorizontalOptions="End" VerticalOptions="End">
+                        <Label Text="●" FontSize="14" TextColor="White"
+                 HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="5">
+                    <Label Text="Karthik S" FontSize="21" FontAttributes="Bold" TextColor="#102653" />
+                    <HorizontalStackLayout Spacing="7" VerticalOptions="Center">
+                        <Label Text="☎" FontSize="15" TextColor="#315078" VerticalOptions="Center" />
+                        <Label Text="98765 43210" FontSize="15" TextColor="#61738E" VerticalOptions="Center" />
+                        <Label Text="✎" FontSize="18" TextColor="#0878E8" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Border HorizontalOptions="Start" Padding="10,4" BackgroundColor="#DDF8E9"
+              StrokeThickness="0" StrokeShape="RoundRectangle 14">
+                        <HorizontalStackLayout Spacing="5">
+                            <Label Text="✓" FontSize="13" TextColor="#07844D" FontAttributes="Bold" />
+                            <Label Text="Verified" FontSize="12" TextColor="#07844D" FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <Label Grid.Column="2" Text="›" FontSize="30" TextColor="#0878E8"
+         VerticalOptions="Center" />
+            </Grid>
+        </Border>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Spacing="0" Padding="0,0,0,20">
+               
+                 <!--Colour-coded shortcuts--> 
+                <Grid Margin="22,18,22,0" ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                    <Border Padding="13,13" BackgroundColor="#FFF4F5" Stroke="#FFE1E6"
+                     StrokeShape="RoundRectangle 22">
+                        <Grid RowDefinitions="42,Auto,Auto" RowSpacing="5">
+                            <Border WidthRequest="40" HeightRequest="40" BackgroundColor="#FFE1E8"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 20" HorizontalOptions="Start">
+                                <Label Text="♥" FontSize="23" TextColor="#F02D4F"
+                                HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Grid.Row="1" Text="Favourites" FontSize="13" FontAttributes="Bold" TextColor="#102653" />
+                            <Label Grid.Row="2" Text="12 numbers" FontSize="11" TextColor="#6C7E99" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnFavouritesTapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Padding="13,13" BackgroundColor="#F0F7FF" Stroke="#DCEBFF"
+                     StrokeShape="RoundRectangle 22">
+                        <Grid RowDefinitions="42,Auto,Auto" RowSpacing="5">
+                            <Border WidthRequest="40" HeightRequest="40" BackgroundColor="#DCEBFF"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 20" HorizontalOptions="Start">
+                                <Label Text="◷" FontSize="24" TextColor="#0878E8"
+                                HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Grid.Row="1" Text="History" FontSize="13" FontAttributes="Bold" TextColor="#102653" />
+                            <Label Grid.Row="2" Text="View all" FontSize="11" TextColor="#6C7E99" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnHistoryTapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="2" Padding="13,13" BackgroundColor="#F0FBF4" Stroke="#D9F4E4"
+                     StrokeShape="RoundRectangle 22">
+                        <Grid RowDefinitions="42,Auto,Auto" RowSpacing="5">
+                            <Border WidthRequest="40" HeightRequest="40" BackgroundColor="#D8F8E5"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 20" HorizontalOptions="Start">
+                                <Label Text="☆" FontSize="25" TextColor="#07965B"
+                                HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Grid.Row="1" Text="Plans &amp; Offers" FontSize="13" FontAttributes="Bold" TextColor="#102653" />
+                            <Label Grid.Row="2" Text="Best offers" FontSize="11" TextColor="#6C7E99" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                 <!--Account actions--> 
+                <Border Margin="22,18,22,0" Padding="8,4" BackgroundColor="White"
+                 Stroke="#E2EDF7" StrokeThickness="1" StrokeShape="RoundRectangle 26">
+                    <VerticalStackLayout Spacing="0">
+                        <Grid Padding="12,13" ColumnDefinitions="48,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="44" HeightRequest="44" BackgroundColor="#E0F0FF"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                                <Label Text="●" FontSize="22" TextColor="#0878E8" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Account &amp; Profile" FontSize="16" FontAttributes="Bold" TextColor="#102653" />
+                                <Label Text="Edit your personal details, KYC and security" FontSize="12" TextColor="#647895" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="›" FontSize="28" TextColor="#315078" VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="#EAF0F7" Margin="12,0" />
+                        <Grid Padding="12,13" ColumnDefinitions="48,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="44" HeightRequest="44" BackgroundColor="#F0E3FF"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                                <Label Text="⚙" FontSize="23" TextColor="#813BEE" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Settings" FontSize="16" FontAttributes="Bold" TextColor="#102653" />
+                                <Label Text="Language, notifications, theme and more" FontSize="12" TextColor="#647895" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="›" FontSize="28" TextColor="#315078" VerticalOptions="Center" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSettingsTapped" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="#EAF0F7" Margin="12,0" />
+                        <Grid Padding="12,13" ColumnDefinitions="48,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="44" HeightRequest="44" BackgroundColor="#FFEBD7"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                                <Label Text="☏" FontSize="22" TextColor="#E47B12" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Help &amp; Support" FontSize="16" FontAttributes="Bold" TextColor="#102653" />
+                                <Label Text="Get help with recharges, payments and more" FontSize="12" TextColor="#647895" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="›" FontSize="28" TextColor="#315078" VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="#EAF0F7" Margin="12,0" />
+                        <Grid Padding="12,13" ColumnDefinitions="48,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="44" HeightRequest="44" BackgroundColor="#D9F7F3"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                                <Label Text="◇" FontSize="26" TextColor="#078C86" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Privacy &amp; Security" FontSize="16" FontAttributes="Bold" TextColor="#102653" />
+                                <Label Text="Manage your data and account safety" FontSize="12" TextColor="#647895" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="›" FontSize="28" TextColor="#0878E8" VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="#EAF0F7" Margin="12,0" />
+                        <Grid Padding="12,13" ColumnDefinitions="48,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="44" HeightRequest="44" BackgroundColor="#FFE2F0"
+                             StrokeThickness="0" StrokeShape="RoundRectangle 22">
+                                <Label Text="⇥" FontSize="25" TextColor="#D72F79" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Logout" FontSize="16" FontAttributes="Bold" TextColor="#102653" />
+                                <Label Text="Sign out from this device" FontSize="12" TextColor="#647895" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="›" FontSize="28" TextColor="#315078" VerticalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="ThogaiPay  •  நம் மக்கள் | நம் பணம் | நம் நம்பிக்கை"
+                HorizontalOptions="Center" Margin="12,18,12,0" FontSize="11" TextColor="#8192AA" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+   
+</pages:MainTabPage>

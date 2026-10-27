@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ThogaiPay.Controls"
+             xmlns:vm="clr-namespace:ThogaiPay.ViewModels.Authentication"
+             x:Class="ThogaiPay.Views.Authentication.BiometricSetupPage"
+             x:DataType="vm:BiometricSetupViewModel"
+             Shell.NavBarIsVisible="False" BackgroundColor="#F7FAFF">
+    <VerticalStackLayout Padding="24,48,24,28" Spacing="0">
+        <Image Source="fingerprint_verification.png" WidthRequest="154" HeightRequest="104" Aspect="AspectFit" HorizontalOptions="Center" />
+        <Label Margin="0,28,0,0" Text="Quick, secure access" FontSize="26" FontAttributes="Bold" TextColor="#0B2D78" HorizontalTextAlignment="Center" />
+        <Label Margin="6,10,6,0" Text="Use your device biometrics to unlock ThogaiPay. This is optional and your biometric data never leaves your device." FontSize="14" TextColor="#66799A" HorizontalTextAlignment="Center" />
+        <Border Margin="0,30,0,0" Padding="16" BackgroundColor="#EAF3FF" StrokeThickness="0" StrokeShape="RoundRectangle 18" IsVisible="{Binding IsAvailable}">
+            <Label Text="{Binding MethodName}" FontSize="16" FontAttributes="Bold" TextColor="#0B2D78" HorizontalTextAlignment="Center" />
+        </Border>
+        <Label Margin="2,12,2,0" Text="{Binding ErrorMessage}" TextColor="#D92D20" FontSize="12" IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+        <controls:CTAButton Margin="0,26,0,0"
+                            Text="Enable biometrics"
+                            BusyText="Enabling..."
+                            Command="{Binding EnableCommand}"
+                            IsBusy="{Binding IsBusy}"
+                            IsVisible="{Binding IsAvailable}"
+                            Variant="Primary"
+                            TrailingIcon="→"
+                            AccessibilityLabel="Enable device biometrics"
+                            AutomationIdentifier="Biometric_Enable" />
+        <controls:CTAButton Margin="0,12,0,0"
+                            Text="Skip for now"
+                            Command="{Binding SkipCommand}"
+                            Variant="Text"
+                            AccessibilityLabel="Skip biometric setup"
+                            AutomationIdentifier="Biometric_Skip" />
+    </VerticalStackLayout>
+</ContentPage>

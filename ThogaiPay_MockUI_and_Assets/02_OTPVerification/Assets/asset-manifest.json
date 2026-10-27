@@ -1,0 +1,14 @@
+{
+  "screen": "OTPVerification",
+  "sharedLogo": [
+    "../../00_Shared/Logo/thogaipay_mark.svg",
+    "../../00_Shared/Logo/thogaipay_wordmark.svg"
+  ],
+  "icons": [
+    "../../00_Shared/Icons/back.svg",
+    "../../00_Shared/Icons/phone.svg",
+    "../../00_Shared/Icons/lock.svg",
+    "../../00_Shared/Icons/shield_check.svg"
+  ],
+  "images": []
+}

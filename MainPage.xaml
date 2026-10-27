@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:MainTabPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:controls="clr-namespace:ThogaiPay.Controls"
+                   xmlns:pages="clr-namespace:ThogaiPay"
+                   x:Class="ThogaiPay.MainPage"
+                   x:Name="RootPage"
+                   BackgroundColor="#F5FAFF"
+                   Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Spacing="0" Padding="0,0,0,12">
+                <Grid HeightRequest="176" Padding="22,50,22,12" ColumnDefinitions="*,42,42" ColumnSpacing="12">
+                    <Image Source="thogaipay_brand_horizontal_logo.png" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" />
+                    <Border Grid.Column="1" WidthRequest="42" HeightRequest="42" BackgroundColor="#F1F6FF" StrokeThickness="0" StrokeShape="RoundRectangle 21" VerticalOptions="Center">
+                        <Label Text="♧" FontSize="25" TextColor="#0759D8" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                    <Border Grid.Column="2" WidthRequest="42" HeightRequest="42" BackgroundColor="#EEF5FF" StrokeThickness="0" StrokeShape="RoundRectangle 21" VerticalOptions="Center">
+                        <Label Text="A" FontSize="20" TextColor="#0759D8" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                </Grid>
+
+                <!-- Search card intentionally overlaps the bottom of the header -->
+                <controls:QuickRechargeSearchBar Margin="18,-30,18,0"
+                    Text="{Binding SearchText, Mode=TwoWay}"
+                    Placeholder="Enter mobile no. or DTH ID to recharge"
+                    SearchCommand="{Binding SearchCommand}"
+                    PickContactCommand="{Binding PickContactCommand}" />
+
+                <controls:HomeFavouritesSection Margin="0,26,0,0"/>
+                <controls:HomeRecentRechargesSection Margin="0,26,0,0"/>
+
+                <!-- Branded family footer banner with family artwork on the right -->
+                <Border Margin="18,22,18,8" HeightRequest="132" BackgroundColor="#E6F3FF"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 22" >
+                    <Grid>
+                        <Image Source="home_family_footer.png" Aspect="AspectFill"
+                               HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                        <BoxView Opacity="0.88">
+                            <BoxView.Background>
+                                
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#E8F4FF" Offset="0.0"/>
+                                    <GradientStop Color="#E8F4FF" Offset="0.46"/>
+                                    <GradientStop Color="#00E8F4FF" Offset="0.78"/>
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Start"
+                                             Padding="18,8,0,8" Spacing="4" WidthRequest="260">
+                            <Label Text="For the people who matter."
+                                   FontSize="18" FontAttributes="Bold" TextColor="#101D5A"
+                                   LineBreakMode="WordWrap"/>
+                            <Label Text="Recharge • DTH • Family, always connected ♡"
+                                   FontSize="12" TextColor="#405A91" LineBreakMode="WordWrap"/>
+                            <Label Text="Simple. Fast. ThogaiPay."
+                                   FontSize="11" FontAttributes="Bold" TextColor="#0875FF"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</pages:MainTabPage>

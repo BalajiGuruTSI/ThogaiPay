@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:ThogaiPay.ViewModels.Authentication"
+    xmlns:controls="clr-namespace:ThogaiPay.Controls"
+    x:Class="ThogaiPay.Views.Authentication.OtpVerificationPage"
+    x:DataType="viewModels:OtpVerificationViewModel"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#FFFFFF">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BrandNavy">#102765</Color>
+            <Color x:Key="BrandBlue">#0759E8</Color>
+            <Color x:Key="BrandGreen">#08C879</Color>
+            <Color x:Key="MutedText">#7181A1</Color>
+            <Color x:Key="BorderColor">#D8E4F8</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Padding="24,14,24,26" Spacing="0">
+
+                <!-- Back navigation and language selector -->
+                <Grid ColumnDefinitions="*,Auto" HeightRequest="48">
+                    <Label Text="‹"
+                           FontSize="42"
+                           TextColor="{StaticResource BrandNavy}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Margin="0,-5,0,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Border Grid.Column="1"
+                            Padding="4,3"
+                            BackgroundColor="#F4F7FF"
+                            Stroke="#D9E5FF"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 24">
+                        <HorizontalStackLayout Spacing="3">
+                            <Border x:Name="EnglishLanguageBorder"
+                                    Padding="12,8"
+                                    BackgroundColor="#FFFFFF"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 20">
+                                <Label x:Name="EnglishLanguageLabel"
+                                       Text="English"
+                                       FontSize="12"
+                                       TextColor="#536786"
+                                       VerticalOptions="Center" />
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnEnglishTapped" />
+                                </Border.GestureRecognizers>
+                            </Border>
+
+                            <Border x:Name="TamilLanguageBorder"
+                                    Padding="12,8"
+                                    BackgroundColor="{StaticResource BrandBlue}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 20">
+                                <Label x:Name="TamilLanguageLabel"
+                                       Text="தமிழ்"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="#FFFFFF"
+                                       VerticalOptions="Center" />
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTamilTapped" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Approved vertical ThogaiPay brand asset -->
+                <Image Source="thogaipay_vertical_logo.png"
+                       HeightRequest="238"
+                       WidthRequest="300"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Margin="0,4,0,0" />
+
+                <!-- Heading -->
+                <Label x:Name="HeadingLabel"
+                       Text="OTP சரிபார்ப்பு"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource BrandNavy}"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,2,0,0" />
+
+                <Label x:Name="SubtitleLabel"
+                       Text="உங்கள் மொபைல் எண்ணிற்கு அனுப்பிய&#10;6 இலக்க OTP ஐ உள்ளிடுங்கள்"
+                       FontSize="16"
+                       TextColor="{StaticResource MutedText}"
+                       LineHeight="1.3"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,7,0,0" />
+
+                <!-- Mobile number and edit action -->
+                <Border Margin="0,22,0,0"
+                        Padding="14,12"
+                        BackgroundColor="#F4F8FF"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20">
+                    <Grid ColumnDefinitions="48,*,Auto" ColumnSpacing="10">
+                        <Border WidthRequest="46"
+                                HeightRequest="46"
+                                BackgroundColor="#DFEBFF"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 23"
+                                VerticalOptions="Center">
+                            <Image Source="phone.png"
+                                   WidthRequest="23"
+                                   HeightRequest="23"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="3"
+                                             VerticalOptions="Center">
+                            <Label x:Name="MobileNumberCaption"
+                                   Text="மொபைல் எண்"
+                                   FontSize="12"
+                                   TextColor="{StaticResource MutedText}" />
+                            <Label Text="{Binding MaskedMobileNumber}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandNavy}"
+                                   LineBreakMode="NoWrap"
+                                   VerticalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <Border Grid.Column="2"
+                                Padding="10,9"
+                                BackgroundColor="Transparent"
+                                Stroke="#BFD4FF"
+                                StrokeThickness="1.3"
+                                StrokeShape="RoundRectangle 24"
+                                VerticalOptions="Center">
+                            <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                                <Label Text="✎"
+                                       FontSize="19"
+                                       TextColor="{StaticResource BrandBlue}"
+                                       VerticalOptions="Center" />
+                                <Label x:Name="EditNumberLabel"
+                                       Text="திருத்து"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource BrandBlue}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EditNumberCommand}" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Six OTP boxes backed by one numeric Entry -->
+                <Grid x:Name="OtpBoxesGrid"
+                      Margin="0,26,0,0"
+                      HeightRequest="68">
+                    <Grid ColumnDefinitions="*,*,*,*,*,*" ColumnSpacing="7">
+                        <Border Grid.Column="0" Stroke="{StaticResource BrandBlue}" StrokeThickness="1.8"
+                                BackgroundColor="#F6F9FF" StrokeShape="RoundRectangle 14">
+                            <Label Text="{Binding OtpDigit1}" FontSize="24" FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandBlue}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Column="1" Stroke="#C9D4E7" StrokeThickness="1.4"
+                                BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Label Text="{Binding OtpDigit2}" FontSize="24" FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandNavy}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Column="2" Stroke="#C9D4E7" StrokeThickness="1.4"
+                                BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Label Text="{Binding OtpDigit3}" FontSize="24" FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandNavy}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Column="3" Stroke="#C9D4E7" StrokeThickness="1.4"
+                                BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Label Text="{Binding OtpDigit4}" FontSize="24" FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandNavy}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Column="4" Stroke="#C9D4E7" StrokeThickness="1.4"
+                                BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Label Text="{Binding OtpDigit5}" FontSize="24" FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandNavy}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Column="5" Stroke="#C9D4E7" StrokeThickness="1.4"
+                                BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Label Text="{Binding OtpDigit6}" FontSize="24" FontAttributes="Bold"
+                                   TextColor="{StaticResource BrandNavy}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                    </Grid>
+
+                    <Entry x:Name="OtpInputEntry"
+                           Text="{Binding Otp, Mode=TwoWay}"
+                           Keyboard="Numeric"
+                           MaxLength="6"
+                           HeightRequest="68"
+                           Opacity="0.02"
+                           BackgroundColor="Transparent"
+                           TextColor="Transparent"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOtpBoxesTapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Label Margin="4,7,4,0"
+                       Text="{Binding ErrorMessage}"
+                       TextColor="#D92D20"
+                       FontSize="12"
+                       IsVisible="{Binding HasError}" />
+
+                <Label Margin="4,5,4,0"
+                       Text="{Binding HelperMessage}"
+                       TextColor="#138A52"
+                       FontSize="12"
+                       IsVisible="{Binding HasHelperMessage}" />
+
+                <!-- Countdown / resend -->
+                <HorizontalStackLayout Margin="0,24,0,0"
+                                       HorizontalOptions="Center"
+                                       Spacing="7">
+                    <Label x:Name="ResendCaptionLabel"
+                           Text="மீண்டும் அனுப்ப"
+                           FontSize="14"
+                           TextColor="{StaticResource MutedText}"
+                           VerticalOptions="Center" />
+
+                    <Label Text="{Binding ResendStatusText}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource BrandBlue}"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding CanResend, Converter={StaticResource InverseBoolConverter}}" />
+
+                    <Label x:Name="ResendLabel"
+                           Text="Resend"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource BrandBlue}"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding CanResend}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ResendOtpCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+
+                <controls:CTAButton
+                    x:Name="VerifyActionButton"
+                    Margin="0,28,0,0"
+                    Text="Verify and continue"
+                    BusyText="Verifying..."
+                    Command="{Binding VerifyCommand}"
+                    IsBusy="{Binding IsVerifying}"
+                    Variant="BrandedPrimary"
+                    TrailingIcon="→"
+                    AccessibilityLabel="Verify OTP and continue"
+                    AutomationIdentifier="OTP_Verify" />
+
+                <!-- Quiet trust footer -->
+                <HorizontalStackLayout Margin="0,20,0,0"
+                                       HorizontalOptions="Center"
+                                       Spacing="7">
+                    <Image Source="shield_check.png"
+                           WidthRequest="16"
+                           HeightRequest="16"
+                           Aspect="AspectFit"
+                           VerticalOptions="Center" />
+                    <Label Text="Secure. Fast. Reliable."
+                           FontSize="12"
+                           TextColor="{StaticResource MutedText}"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

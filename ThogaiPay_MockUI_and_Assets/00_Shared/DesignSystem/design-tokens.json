@@ -1,0 +1,55 @@
+{
+  "brand": {
+    "navy": "#102A43",
+    "deepNavy": "#082B59",
+    "blue": "#0759D8",
+    "brightBlue": "#0878E8",
+    "teal": "#00C2C7",
+    "gold": "#FFB21A",
+    "white": "#FFFFFF",
+    "background": "#F7FAFF",
+    "surface": "#FFFFFF",
+    "border": "#D7E2F3",
+    "muted": "#66799A",
+    "success": "#168653",
+    "danger": "#D92D20",
+    "warning": "#B7791F"
+  },
+  "typography": {
+    "fontFamily": "Inter, system-ui, sans-serif",
+    "screenTitle": 24,
+    "sectionTitle": 16,
+    "body": 14,
+    "caption": 12
+  },
+  "radii": {
+    "input": 14,
+    "card": 22,
+    "button": 15,
+    "pill": 999
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "xxl": 32
+  },
+  "navigation": [
+    "Home",
+    "Recharge",
+    "ThogaiPay brand mark",
+    "History",
+    "Profile"
+  ],
+  "constraints": [
+    "B2C only",
+    "No Scan & Pay",
+    "No money transfer",
+    "No Add Money/wallet funding",
+    "No distributor or retailer tools",
+    "No notification screen",
+    "No payment confirmation screen"
+  ]
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:MainTabPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ThogaiPay.Controls"
+             xmlns:pages="clr-namespace:ThogaiPay"
+             x:Class="ThogaiPay.Views.History.HistoryPage"
+             BackgroundColor="{StaticResource Gray100}"
+             Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="0">
+        <controls:AppBrandedHeader
+HeaderImageSource="header_history.png"
+LogoSource="thogaipay_mark_brand.svg"
+ShowBrand="False"
+ShowBackButton="False"
+ShowProfileButton="False"
+ProfileCommand="{Binding OpenProfileCommand}" />
+
+        <Border Grid.Row="1"
+                Margin="14,-86,14,16"
+                Padding="18"
+                BackgroundColor="White"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 22">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Recharge History"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource Gray900}" />
+                <Label Text="Your recent mobile and DTH transactions will appear here in the next phase."
+                       FontSize="14"
+                       TextColor="{StaticResource Gray500}" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</pages:MainTabPage>

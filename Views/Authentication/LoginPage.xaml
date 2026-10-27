@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:ThogaiPay.ViewModels.Authentication"
+    xmlns:controls="clr-namespace:ThogaiPay.Controls"
+    x:Class="ThogaiPay.Views.Authentication.LoginPage"
+    x:DataType="viewModels:LoginViewModel"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#FFFFFF">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BrandNavy">#071B68</Color>
+            <Color x:Key="BrandBlue">#0759D8</Color>
+            <Color x:Key="BrandGreen">#08C879</Color>
+            <Color x:Key="MutedText">#7785A2</Color>
+            <Color x:Key="BorderColor">#DCE6F7</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Subtle background accents -->
+        <!--<Grid InputTransparent="True"
+              IsClippedToBounds="True">
+            <Ellipse
+                WidthRequest="220"
+                HeightRequest="220"
+                Fill="#EAF7FF"
+                Opacity="0.7"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                TranslationX="-140"
+                TranslationY="160" />
+
+            <Ellipse
+                WidthRequest="250"
+                HeightRequest="250"
+                Fill="#E7FFF4"
+                Opacity="0.6"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                TranslationX="145"
+                TranslationY="120" />
+        </Grid>-->
+
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid
+                Padding="24,18,24,26"
+                RowDefinitions="Auto,*,Auto"
+                MinimumHeightRequest="680">
+
+                <!-- Language selector -->
+                <Grid
+                    Grid.Row="0"
+                    ColumnDefinitions="*,Auto"
+                    VerticalOptions="Start">
+
+                    <!-- Modern language switch -->
+                    <Border
+    Grid.Column="1"
+    Padding="4"
+    BackgroundColor="#F0F5FF"
+    Stroke="#D9E5FF"
+    StrokeThickness="1"
+    StrokeShape="RoundRectangle 24">
+
+                        <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="3">
+
+                            <!-- English option -->
+                            <Border
+            Padding="12,8"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 20"
+            BackgroundColor="{Binding EnglishLanguageBackground,Mode=TwoWay}">
+
+                                <Label
+                Text="English"
+                FontSize="12"
+                FontAttributes="Bold"
+                TextColor="{Binding EnglishLanguageTextColor,Mode=TwoWay}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                    Tapped="OnEnglishTapped" />
+                                </Border.GestureRecognizers>
+                            </Border>
+
+                            <!-- Tamil option -->
+                            <Border
+            Grid.Column="1"
+            Padding="12,8"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 20"
+            BackgroundColor="{Binding TamilLanguageBackground,Mode=TwoWay}">
+
+                                <Label
+                Text="தமிழ்"
+                FontSize="12"
+                FontAttributes="Bold"
+                TextColor="{Binding TamilLanguageTextColor,Mode=TwoWay}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                    Tapped="OnTamilTapped" />
+                                </Border.GestureRecognizers>
+                            </Border>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!-- Login content -->
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Spacing="0"
+                    VerticalOptions="Center">
+
+                    <!-- Use your transparent logo-only image -->
+                    <Image
+                        Source="thogaipay_vertical_logo.png"
+                        HeightRequest="205"
+                        WidthRequest="180"
+                        Aspect="AspectFit"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,8" />
+
+                    <!--<Label
+                        Text="{Binding LoginTitle}"
+                        FontSize="25"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource BrandNavy}"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Fill" />
+
+                    <Label
+                        Text="{Binding LoginSubtitle}"
+                        FontSize="14"
+                        TextColor="{StaticResource MutedText}"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Fill"
+                        LineHeight="1.3"
+                        Margin="0,9,0,0" />-->
+
+                    <!-- Compact mobile number field -->
+                    <Border
+    x:Name="MobileNumberBorder"
+    Padding="14,6"
+    HeightRequest="76"
+    BackgroundColor="#FFFFFF"
+    Stroke="{StaticResource BorderColor}"
+    StrokeThickness="1.3"
+    StrokeShape="RoundRectangle 18">
+
+                        <Grid
+        RowDefinitions="Auto,*"
+        ColumnDefinitions="Auto,1,Auto,1,*"
+        ColumnSpacing="5"
+        RowSpacing="0">
+
+                            <!-- Floating label -->
+                            <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Text="{Binding MobileLabel}"
+            FontSize="11"
+            FontAttributes="Bold"
+            TextColor="{StaticResource BrandBlue}"
+            VerticalOptions="Center" />
+
+                            <!-- Country indicator -->
+                            <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="🇮🇳"
+            FontSize="19"
+            VerticalOptions="Center" />
+
+                            <!-- Divider -->
+                            <BoxView
+            Grid.Row="1"
+            Grid.Column="1"
+            WidthRequest="1"
+            HeightRequest="27"
+            Color="#DCE6F7"
+            VerticalOptions="Center" />
+
+                            <!-- Country code -->
+                            <Label
+            Grid.Row="1"
+            Grid.Column="2"
+            Text="+91"
+            FontSize="16"
+            TextColor="{StaticResource BrandNavy}"
+            VerticalOptions="Center" />
+
+                            <!-- Divider -->
+                            <BoxView
+Grid.Row="1"
+Grid.Column="3"
+WidthRequest="1"
+HeightRequest="27"
+Color="#DCE6F7"
+VerticalOptions="Center" />
+
+                            <!-- Number input -->
+                            <Entry
+            x:Name="MobileNumberEntry"
+            Grid.Row="1"
+            Grid.Column="4"
+            Text="{Binding MobileNumber, Mode=TwoWay}"
+            Placeholder="{Binding MobilePlaceholder}"
+            Keyboard="Numeric"
+            MaxLength="10"
+            FontSize="16"
+            TextColor="{StaticResource BrandNavy}"
+            PlaceholderColor="#9AA9C1"
+            BackgroundColor="Transparent"
+            ClearButtonVisibility="WhileEditing"
+            VerticalOptions="Center"
+            Margin="0"
+            SemanticProperties.Hint="Enter your 10-digit mobile number" />
+
+                        </Grid>
+                    </Border>
+
+                    <!-- Mobile number input -->
+                    <!--<Border
+                        Padding="10"
+                        BackgroundColor="#FFFFFF"
+                        Stroke="{StaticResource BorderColor}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 22">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="#274F91"
+                                Opacity="0.07"
+                                Radius="15"
+                                Offset="0,5" />
+                        </Border.Shadow>
+
+                        <Grid
+                            ColumnDefinitions="Auto,1,Auto,*"
+                            RowDefinitions="Auto,Auto"
+                            ColumnSpacing="12"
+                            RowSpacing="4"
+                            MinimumHeightRequest="55">
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4"
+                                Text="{Binding MobileLabel}"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1"
+                                TextColor="{StaticResource BrandBlue}" />
+
+                            <HorizontalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Spacing="5"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="🇮🇳"
+                                    FontSize="22"
+                                    VerticalOptions="Center" />
+
+                                --><!--<Label
+                                    Text="⌄"
+                                    FontSize="15"
+                                    TextColor="{StaticResource BrandNavy}"
+                                    VerticalOptions="Center" />--><!--
+                            </HorizontalStackLayout>
+
+                            <BoxView
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                WidthRequest="1"
+                                Color="#D9E2F0"
+                                Margin="0,5"
+                                VerticalOptions="Fill" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Text="+91"
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource BrandNavy}"
+                                VerticalOptions="Center" />
+
+                            <Entry
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Text="{Binding MobileNumber, Mode=TwoWay}"
+                                Placeholder="{Binding MobilePlaceholder}"
+                                InputKeyboard="Telephone"
+                                MaxLength="10"
+                                FontSize="17"
+                                TextColor="{StaticResource BrandNavy}"
+                                PlaceholderColor="#AAB5C9"
+                                VerticalOptions="Center"
+                                ClearButtonVisibility="WhileEditing" />
+                        </Grid>
+                    </Border>-->
+
+                    <!-- Error message -->
+                    <Label
+                        Margin="6,8,6,0"
+                        Text="{Binding ErrorMessage}"
+                        TextColor="#D92D20"
+                        FontSize="12"
+                        IsVisible="{Binding ErrorMessage,
+                            Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+
+                    <!-- Shared CTA: command and loading state stay in the ViewModel. -->
+                    <controls:CTAButton
+                        Margin="0,25,0,0"
+                        Text="{Binding ContinueText}"
+                        BusyText="Sending OTP..."
+                        Command="{Binding LoginCommand}"
+                        IsBusy="{Binding IsBusy}"
+                        Variant="BrandedPrimary"
+                        TrailingIcon="→"
+                        AccessibilityLabel="Continue with mobile number"
+                        AccessibilityHint="Requests a one-time password for the entered mobile number."
+                        AutomationIdentifier="Login_GetOtp" />
+
+                    <!-- Security note -->
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="7"
+                        Margin="0,18,0,0">
+
+                        <Label
+                            Text="●"
+                            FontSize="10"
+                            TextColor="{StaticResource BrandGreen}"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Text="{Binding SafetyText}"
+                            FontSize="12"
+                            TextColor="{StaticResource MutedText}"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <!-- Footer -->
+                <Label
+                    Grid.Row="2"
+                    Text="Secure access to mobile and DTH recharges"
+                    FontSize="11"
+                    TextColor="#8B97AD"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center" />
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

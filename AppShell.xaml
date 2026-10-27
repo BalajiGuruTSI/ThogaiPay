@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ThogaiPay.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ThogaiPay"
+    xmlns:auth="clr-namespace:ThogaiPay.Views.Authentication"
+    xmlns:recharge="clr-namespace:ThogaiPay.Views.Recharge"
+    xmlns:history="clr-namespace:ThogaiPay.Views.History"
+    xmlns:profile="clr-namespace:ThogaiPay.Views.Profile"
+    FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarForegroundColor="{StaticResource HomeBottomBarActive}"
+    Shell.TabBarTitleColor="{StaticResource HomeBottomBarActive}"
+    Shell.TabBarUnselectedColor="{StaticResource HomeBottomBarInactive}"
+    Title="ThogaiPay">
+
+    <ShellContent
+        x:Name="LoginShellContent"
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate auth:LoginPage}" />
+
+    <TabBar Route="MainTabs"
+            Shell.TabBarIsVisible="False">
+        <ShellContent
+            Title="Home"
+            Icon="home.svg"
+            Route="MainPage"
+            ContentTemplate="{DataTemplate local:MainPage}" />
+
+        <ShellContent
+            Title="Recharge"
+            Icon="mobile.svg"
+            Route="RechargePage"
+            ContentTemplate="{DataTemplate recharge:MobileRechargePage}" />
+        
+        <ShellContent
+            Title="History"
+            Icon="history.svg"
+            Route="HistoryPage"
+            ContentTemplate="{DataTemplate history:HistoryPage}" />
+
+        <ShellContent
+            Title="Profile"
+            Icon="profile.svg"
+            Route="ProfilePage"
+            ContentTemplate="{DataTemplate profile:ProfilePage}" />
+    </TabBar>
+
+</Shell>

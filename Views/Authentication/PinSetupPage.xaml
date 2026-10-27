@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ThogaiPay.Controls"
+             xmlns:vm="clr-namespace:ThogaiPay.ViewModels.Authentication"
+             x:Class="ThogaiPay.Views.Authentication.PinSetupPage"
+             x:DataType="vm:PinSetupViewModel"
+             Shell.NavBarIsVisible="False" BackgroundColor="#F7FAFF">
+    <ScrollView>
+        <VerticalStackLayout Padding="24,36,24,28" Spacing="0">
+            <Image Source="thogaipay_brand_vertical.png" HeightRequest="150" Aspect="AspectFit" HorizontalOptions="Center" />
+            <Label Margin="0,24,0,0" Text="Set your 4-digit PIN" FontSize="25" FontAttributes="Bold" TextColor="#0B2D78" HorizontalTextAlignment="Center" />
+            <Label Margin="0,8,0,0" Text="Use this PIN to unlock ThogaiPay on this device." FontSize="14" TextColor="#66799A" HorizontalTextAlignment="Center" />
+            <Border Margin="0,30,0,0" Padding="18" BackgroundColor="White" Stroke="#DCE7F6" StrokeShape="RoundRectangle 18">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="NEW PIN" FontSize="12" FontAttributes="Bold" TextColor="#425779" />
+                    <Entry Text="{Binding Pin, Mode=TwoWay}" Keyboard="Numeric" MaxLength="4" IsPassword="True" Placeholder="••••" FontSize="22" HorizontalTextAlignment="Center" AutomationProperties.Name="New four digit PIN" />
+                    <BoxView HeightRequest="1" Color="#DCE7F6" />
+                    <Label Text="CONFIRM PIN" FontSize="12" FontAttributes="Bold" TextColor="#425779" />
+                    <Entry Text="{Binding Confirmation, Mode=TwoWay}" Keyboard="Numeric" MaxLength="4" IsPassword="True" Placeholder="••••" FontSize="22" HorizontalTextAlignment="Center" AutomationProperties.Name="Confirm four digit PIN" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Margin="2,9,2,0" Text="{Binding ErrorMessage}" TextColor="#D92D20" FontSize="12" IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}" />
+            <controls:CTAButton Margin="0,22,0,0"
+                                Text="Continue"
+                                BusyText="Saving PIN..."
+                                Command="{Binding ContinueCommand}"
+                                IsBusy="{Binding IsBusy}"
+                                Variant="Primary"
+                                TrailingIcon="→"
+                                AccessibilityLabel="Continue after setting PIN"
+                                AutomationIdentifier="PinSetup_Continue" />
+            <Label Margin="8,18,8,0" Text="Your PIN is protected by this device’s secure storage. Do not share it with anyone." FontSize="12" TextColor="#66799A" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

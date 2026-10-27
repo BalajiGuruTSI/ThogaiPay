@@ -1,0 +1,18 @@
+{
+  "screen": "LoginPage",
+  "sharedLogo": [
+    "../../00_Shared/Logo/thogaipay_mark.svg",
+    "../../00_Shared/Logo/thogaipay_wordmark.svg"
+  ],
+  "icons": [
+    "../../00_Shared/Icons/phone.svg",
+    "../../00_Shared/Icons/globe.svg",
+    "../../00_Shared/Icons/shield_check.svg",
+    "../../00_Shared/Icons/google_g.svg",
+    "../../00_Shared/Icons/arrow_right.svg"
+  ],
+  "images": [
+    "../../00_Shared/Images/tamil_sunset_temple_header.svg",
+    "../../00_Shared/Images/tamil_line_art_footer.svg"
+  ]
+}

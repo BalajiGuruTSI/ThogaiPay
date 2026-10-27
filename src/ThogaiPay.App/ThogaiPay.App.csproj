@@ -25,15 +25,7 @@
 		     For individual files, you can override by setting Inflator metadata:
 		       <MauiXaml Update="MyPage.xaml" Inflator="Default" /> (reverts to defaults: Runtime for Debug, XamlC for Release)
 		       <MauiXaml Update="MyPage.xaml" Inflator="Runtime" /> (force runtime inflation) -->
-		<MauiXamlInflator>SourceGen</MauiXamlInflator>
-
-		<!-- Display name -->
-		<ApplicationTitle>ThogaiPay.App</ApplicationTitle>
-
-		<!-- App Identifier -->
-		<ApplicationId>com.companyname.thogaipay.app</ApplicationId>
-
-		<!-- Versions -->
+<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
@@ -48,11 +40,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<!-- Keep the animated splash page compiled as MAUI XAML with its generated partial class. -->
+		<MauiXaml Update="Shared\Startup\BrandedSplashPage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\thogaiappicon.png" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#F59E0B" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -74,5 +69,7 @@
 	  <ProjectReference Include="..\ThogaiPay.Application\ThogaiPay.Application.csproj" />
 	  <ProjectReference Include="..\ThogaiPay.Infrastructure\ThogaiPay.Infrastructure.csproj" />
 	</ItemGroup>
+
+	<Import Project="Branding\Generated\Brand.Generated.props" />
 
 </Project>
