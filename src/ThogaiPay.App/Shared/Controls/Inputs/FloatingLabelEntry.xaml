@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThogaiPay.App.Shared.Controls.Inputs.FloatingLabelEntry"
+             x:Name="Root"
+             HeightRequest="65"
+             HorizontalOptions="Fill">
+    <Border x:Name="InputSurface"
+            BackgroundColor="{DynamicResource InputBackground}"
+            Stroke="{DynamicResource InputBorder}"
+            StrokeThickness="1.4"
+            Padding="14,4"
+            StrokeShape="RoundRectangle 34">
+        <Grid ColumnDefinitions="28,*" ColumnSpacing="10">
+            <Image Grid.Column="0"
+                   Source="{Binding LeadingIcon, Source={x:Reference Root}}"
+                   WidthRequest="22"
+                   HeightRequest="26"
+                   Aspect="AspectFit"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" />
+            <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
+                <Label x:Name="FloatingLabel"
+                       Text="{Binding LabelText, Source={x:Reference Root}}"
+                       FontSize="11"
+                       TextColor="{DynamicResource InputFloatingLabel}"
+                       IsVisible="False"
+                       VerticalOptions="End" />
+                <Entry x:Name="InnerEntry"
+                       Grid.Row="1"
+                       Text="{Binding Text, Source={x:Reference Root}, Mode=TwoWay}"
+                       Placeholder="{Binding PlaceholderText, Source={x:Reference Root}}"
+                       Keyboard="{Binding InputKeyboard, Source={x:Reference Root}}"
+                       MaxLength="{Binding MaxLength, Source={x:Reference Root}}"
+                       ReturnType="{Binding EntryReturnType, Source={x:Reference Root}}"
+                       ReturnCommand="{Binding ReturnCommand, Source={x:Reference Root}}"
+                       FontSize="18"
+                       TextColor="{DynamicResource TextPrimary}"
+                       PlaceholderColor="{DynamicResource TextPlaceholder}"
+                       Background="Transparent"
+                       BackgroundColor="Transparent"
+                       ClearButtonVisibility="Never"
+                       Margin="0"
+                       VerticalOptions="Center"
+                       Focused="OnEntryFocused"
+                       Unfocused="OnEntryUnfocused" />
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

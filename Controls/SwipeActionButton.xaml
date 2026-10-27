@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ThogaiPay.Controls.SwipeActionButton"
+    x:Name="Root">
+
+    <Grid HeightRequest="{Binding Source={x:Reference Root}, Path=ButtonHeight}">
+        <Border x:Name="TrackBorder"
+                Background="{Binding Source={x:Reference Root}, Path=ButtonBackground}"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 20">
+            <Grid Padding="8,6"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Fill">
+                <Border x:Name="ProgressFill"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Fill"
+                        WidthRequest="0"
+                        BackgroundColor="{Binding Source={x:Reference Root}, Path=ProgressFillColor}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20" />
+
+                <Label Text="{Binding Source={x:Reference Root}, Path=Text}"
+                       Style="{Binding Source={x:Reference Root}, Path=TextStyle}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <Border x:Name="Thumb"
+                WidthRequest="36"
+                HeightRequest="36"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Margin="10,0,0,0"
+                Background="{StaticResource White}"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 18">
+            <Grid>
+                <Image x:Name="ArrowIcon"
+                       Source="{Binding Source={x:Reference Root}, Path=ThumbIconSource}"
+                       WidthRequest="22"
+                       HeightRequest="22"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <ActivityIndicator x:Name="BusyIndicator"
+                                   WidthRequest="22"
+                                   HeightRequest="22"
+                                   IsVisible="False"
+                                   IsRunning="False"
+                                   Color="{Binding Source={x:Reference Root}, Path=IndicatorColor}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <Grid.GestureRecognizers>
+            <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+            <TapGestureRecognizer Tapped="OnTapped" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</ContentView>

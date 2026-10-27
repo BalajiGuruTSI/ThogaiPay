@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ThogaiPay.Controls.FloatingLabelEntry"
+    x:Name="Root">
+
+    <Grid>
+        <Border x:Name="InputBorder"
+                HeightRequest="{Binding Source={x:Reference Root}, Path=FieldHeight}"
+                Padding="{Binding Source={x:Reference Root}, Path=FieldPadding}"
+                BackgroundColor="{Binding Source={x:Reference Root}, Path=FieldBackgroundColor}"
+                Stroke="{Binding Source={x:Reference Root}, Path=FieldBorderColor}"
+                StrokeThickness="1.4">
+            <Grid ColumnDefinitions="Auto,Auto,1,*"
+                  ColumnSpacing="9"
+                  VerticalOptions="Center">
+                <Image Grid.Column="0"
+                       Source="{Binding Source={x:Reference Root}, Path=IconSource}"
+                       WidthRequest="20"
+                       HeightRequest="20"
+                       Aspect="AspectFit"
+                       VerticalOptions="Center"
+                       IsVisible="{Binding Source={x:Reference Root}, Path=IsIconVisible}" />
+
+                <Label Grid.Column="1"
+                       Text="{Binding Source={x:Reference Root}, Path=PrefixText}"
+                       FontSize="14"
+                       TextColor="{Binding Source={x:Reference Root}, Path=EntryTextColor}"
+                       VerticalOptions="Center"
+                       IsVisible="{Binding Source={x:Reference Root}, Path=IsPrefixVisible}" />
+
+                <BoxView Grid.Column="2"
+                         WidthRequest="1"
+                         HeightRequest="30"
+                         Color="{Binding Source={x:Reference Root}, Path=FieldDividerColor}"
+                         VerticalOptions="Center"
+                         IsVisible="{Binding Source={x:Reference Root}, Path=HasLeadingSection}" />
+
+                <Entry x:Name="InputEntry"
+                       Grid.Column="3"
+                       Text="{Binding Source={x:Reference Root}, Path=Text, Mode=TwoWay}"
+                       Placeholder="{Binding Source={x:Reference Root}, Path=EntryPlaceholder}"
+                       Focused="OnEntryFocused"
+                       Unfocused="OnEntryUnfocused"
+                       TextChanged="OnEntryTextChanged"
+                       PlaceholderColor="{Binding Source={x:Reference Root}, Path=EntryPlaceholderColor}"
+                       Keyboard="{Binding Source={x:Reference Root}, Path=Keyboard}"
+                       MaxLength="{Binding Source={x:Reference Root}, Path=MaxLength}"
+                       FontSize="14"
+                       TextColor="{Binding Source={x:Reference Root}, Path=EntryTextColor}"
+                       BackgroundColor="Transparent"
+                       ClearButtonVisibility="Never"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Fill" />
+            </Grid>
+        </Border>
+
+        <Border x:Name="LabelContainer"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Margin="{Binding Source={x:Reference Root}, Path=LabelMargin}"
+                Padding="{Binding Source={x:Reference Root}, Path=LabelPadding}"
+                BackgroundColor="{Binding Source={x:Reference Root}, Path=LabelBackgroundColor}"
+                StrokeThickness="0"
+                ZIndex="1"
+                IsVisible="True"
+                Opacity="0"
+                TranslationY="14"
+                InputTransparent="True">
+            <Label Text="{Binding Source={x:Reference Root}, Path=LabelText}"
+                   FontSize="11"
+                   FontAttributes="Bold"
+                   TextColor="{Binding Source={x:Reference Root}, Path=LabelTextColor}" />
+        </Border>
+    </Grid>
+</ContentView>

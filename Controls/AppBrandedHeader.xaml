@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ThogaiPay.Controls.AppBrandedHeader"
+    x:Name="HeaderRoot"
+    HeightRequest="200">
+
+    <Grid>
+        <!-- Screen-specific scenic background and handwritten tagline -->
+        <Image
+            Source="{Binding Source={x:Reference HeaderRoot},
+                             Path=HeaderImageSource}"
+            Aspect="AspectFill" />
+
+        <!-- Subtle overlay to preserve logo readability -->
+        <BoxView
+            BackgroundColor="#160B2C70"
+            InputTransparent="True" />
+
+        <Grid
+            Padding="16,38,16,14"
+            RowDefinitions="Auto,*"
+            RowSpacing="0">
+
+            <!-- Top brand row -->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="Auto,*,Auto"
+                ColumnSpacing="10">
+
+                <!-- Optional back button -->
+                <Border
+                    IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                        Path=ShowBackButton}"
+                    WidthRequest="42"
+                    HeightRequest="42"
+                    BackgroundColor="#F5FFFFFF"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 21"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="‹"
+                        FontSize="34"
+                        TextColor="#101C58"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Margin="0,-4,0,0" />
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference HeaderRoot},
+                                              Path=BackCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Approved logo and app name -->
+                <HorizontalStackLayout
+                    Grid.Column="1"
+                    IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                        Path=ShowBrand}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="8">
+
+                    <Image
+                        Source="{Binding Source={x:Reference HeaderRoot},
+                                         Path=LogoSource}"
+                        WidthRequest="42"
+                        HeightRequest="42"
+                        Aspect="AspectFit"
+                        VerticalOptions="Center" />
+
+                    <VerticalStackLayout
+                        Spacing="0"
+                        VerticalOptions="Center">
+
+                        <HorizontalStackLayout Spacing="0">
+                            <Label
+                                Text="Thogai"
+                                FontSize="21"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="Pay"
+                                FontSize="21"
+                                FontFamily="OpenSansSemibold"
+                                TextColor="#35E6FF" />
+                        </HorizontalStackLayout>
+
+                        <Label
+                            Text="Recharge Simplified"
+                            FontSize="10"
+                            TextColor="White"
+                            Opacity="0.96" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- Optional right-side action -->
+                <Border
+                    Grid.Column="2"
+                    IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                        Path=ShowProfileButton}"
+                    WidthRequest="42"
+                    HeightRequest="42"
+                    BackgroundColor="#F5FFFFFF"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 21"
+                    VerticalOptions="Center">
+
+                    <Image
+                        Source="profile.svg"
+                        WidthRequest="22"
+                        HeightRequest="22"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference HeaderRoot},
+                                              Path=ProfileCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+
+            <!-- Optional page title and subtitle -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                IsVisible="{Binding Source={x:Reference HeaderRoot},
+                                    Path=ShowPageTitle}"
+                VerticalOptions="End"
+                Spacing="2"
+                Margin="0,8,0,0">
+
+                <Label
+                    Text="{Binding Source={x:Reference HeaderRoot},
+                                   Path=PageTitle}"
+                    FontSize="21"
+                    FontFamily="OpenSansSemibold"
+                    TextColor="White" />
+
+                <Label
+                    Text="{Binding Source={x:Reference HeaderRoot},
+                                   Path=Subtitle}"
+                    FontSize="12"
+                    TextColor="White"
+                    Opacity="0.96" />
+            </VerticalStackLayout>
+
+        </Grid>
+    </Grid>
+</ContentView>

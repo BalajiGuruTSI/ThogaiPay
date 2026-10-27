@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThogaiPay.App.Shared.Startup.BrandedSplashPage"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#FFFFFF">
+    <Grid x:Name="SplashRoot">
+        <!-- User-supplied blue/orange waves image fills the entire in-app splash. -->
+        <Image Source="splashbackground.jpg"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               InputTransparent="True" />
+
+        <!-- Safe-area padding keeps branding clear of system bars. -->
+        <Grid Padding="28,44,28,36"
+              RowDefinitions="*,Auto,*"
+              RowSpacing="0">
+            <VerticalStackLayout Grid.Row="1"
+                                 Spacing="14"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <!-- The selected brand asset is a complete lockup: symbol, wordmark and tagline.
+                     The generator swaps this image according to the selected brand manifest. -->
+                <Image x:Name="BrandLogo"
+                       
+                       HeightRequest="150"
+                       WidthRequest="330"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Opacity="0"
+                       Scale="0.90"
+                       TranslationY="16" />
+                <!-- The brand lockup already includes the app name and Tamil tagline. -->
+            </VerticalStackLayout>
+
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThogaiPay.Controls.HomeFavouritesSection">
+    <VerticalStackLayout Spacing="10">
+        <Grid ColumnDefinitions="*,Auto" Margin="18,0,18,0">
+            <Label Text="Favourites" FontSize="19" FontAttributes="Bold" TextColor="#101D5A" VerticalOptions="Center"/>
+            <Label Grid.Column="1" Text="View all ›" FontSize="14" TextColor="#075BFF" VerticalOptions="Center">
+                <Label.GestureRecognizers><TapGestureRecognizer Tapped="OnViewAllTapped"/></Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout Padding="16,0,16,4" Spacing="10">
+                <Border WidthRequest="116" Padding="9" BackgroundColor="White" Stroke="#E6EEFC" StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="5">
+                        <Grid><Image Source="avatar_appa.png" HeightRequest="76" WidthRequest="76" Aspect="AspectFit" HorizontalOptions="Center"/><Label Text="★" TextColor="#FFB21A" FontSize="20" HorizontalOptions="End" VerticalOptions="Start"/></Grid>
+                        <Label Text="Appa" FontSize="14" FontAttributes="Bold" TextColor="#101D5A" HorizontalTextAlignment="Center"/>
+                        <Label Text="98765 43210" FontSize="11" TextColor="#6C789E" HorizontalTextAlignment="Center"/>
+                        <Label Text="airtel" FontSize="12" FontAttributes="Bold" TextColor="#E5222A" HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border WidthRequest="116" Padding="9" BackgroundColor="White" Stroke="#E6EEFC" StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="5">
+                        <Grid><Image Source="avatar_amma.png" HeightRequest="76" WidthRequest="76" Aspect="AspectFit" HorizontalOptions="Center"/><Label Text="★" TextColor="#FFB21A" FontSize="20" HorizontalOptions="End" VerticalOptions="Start"/></Grid>
+                        <Label Text="Amma" FontSize="14" FontAttributes="Bold" TextColor="#101D5A" HorizontalTextAlignment="Center"/>
+                        <Label Text="91234 56789" FontSize="11" TextColor="#6C789E" HorizontalTextAlignment="Center"/>
+                        <Label Text="Jio" FontSize="12" FontAttributes="Bold" TextColor="#E5222A" HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border WidthRequest="116" Padding="9" BackgroundColor="White" Stroke="#E6EEFC" StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="5">
+                        <Grid><Image Source="avatar_young_male.png" HeightRequest="76" WidthRequest="76" Aspect="AspectFit" HorizontalOptions="Center"/><Label Text="★" TextColor="#FFB21A" FontSize="20" HorizontalOptions="End" VerticalOptions="Start"/></Grid>
+                        <Label Text="Athiyan" FontSize="14" FontAttributes="Bold" TextColor="#101D5A" HorizontalTextAlignment="Center"/>
+                        <Label Text="90123 45678" FontSize="11" TextColor="#6C789E" HorizontalTextAlignment="Center"/>
+                        <Label Text="Vi" FontSize="12" FontAttributes="Bold" TextColor="#E5222A" HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border WidthRequest="116" Padding="9" BackgroundColor="#F7FAFF" Stroke="#D8E6FF" StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                        <Border WidthRequest="58" HeightRequest="58" BackgroundColor="#DCEBFF" StrokeThickness="0" StrokeShape="RoundRectangle 29" HorizontalOptions="Center" VerticalOptions="Center"><Label Text="+" FontSize="36" TextColor="#0875FF" HorizontalOptions="Center" VerticalOptions="Center"/></Border>
+                        <Label Text="Add Favourite" FontSize="13" FontAttributes="Bold" TextColor="#0875FF" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers><TapGestureRecognizer Tapped="OnAddFavouriteTapped"/></Border.GestureRecognizers>
+                </Border>
+            </HorizontalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="250" viewBox="0 0 360 250">
+  <defs>
+    <linearGradient id="phone" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7FBFF"/><stop offset="1" stop-color="#DCEEFF"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#101F50" flood-opacity=".15"/></filter>
+  </defs>
+  <g opacity=".75" fill="#DCEAF0">
+    <path d="M35 202 C45 158 69 138 94 129 C83 160 83 181 108 204Z"/>
+    <path d="M62 213 C75 171 103 159 130 154 C117 185 122 199 140 213Z"/>
+    <path d="M325 202 C315 158 291 138 266 129 C277 160 277 181 252 204Z"/>
+    <path d="M298 213 C285 171 257 159 230 154 C243 185 238 199 220 213Z"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="116" y="14" width="128" height="216" rx="26" fill="#FFFFFF" stroke="#101F50" stroke-width="7"/>
+    <rect x="126" y="26" width="108" height="190" rx="18" fill="url(#phone)"/>
+    <path d="M158 18 H202 Q205 18 205 23 V27 H155 V23 Q155 18 158 18Z" fill="#101F50"/>
+    <circle cx="180" cy="91" r="30" fill="#FFFFFF"/>
+    <circle cx="180" cy="82" r="11" fill="#2563EB"/>
+    <path d="M160 107 C162 91 198 91 200 107 L200 112 L160 112Z" fill="#2563EB"/>
+    <rect x="142" y="128" width="76" height="25" rx="12.5" fill="#FFFFFF" stroke="#C6DDF8" stroke-width="2"/>
+    <g fill="#2563EB"><circle cx="156" cy="140.5" r="4"/><circle cx="170" cy="140.5" r="4"/><circle cx="184" cy="140.5" r="4"/><circle cx="198" cy="140.5" r="4"/></g>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M235 153 V138 C235 121 248 109 264 109 C280 109 293 121 293 138 V153" fill="none" stroke="#F59E0B" stroke-width="12" stroke-linecap="round"/>
+    <rect x="222" y="146" width="84" height="65" rx="14" fill="#F59E0B" stroke="#FFFFFF" stroke-width="4"/>
+    <circle cx="264" cy="172" r="8" fill="#FFFFFF"/>
+    <path d="M264 178 V190" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

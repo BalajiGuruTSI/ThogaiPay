@@ -1,0 +1,32 @@
+{
+  "brandId": "sample-partner",
+  "displayName": "Sample Partner Wallet",
+  "appId": "in.samplepartner.wallet",
+  "urlScheme": "samplepartner",
+  "colors": {
+    "primary": "#164E63",
+    "secondary": "#F97316",
+    "success": "#15803D",
+    "surface": "#FFFFFF",
+    "accentBlue": "#0369A1",
+    "accentCyan": "#0D9488"
+  },
+  "assets": {
+    "appIcon": "branding/brands/sample-partner/assets/app_icon.svg",
+    "splash": "branding/brands/sample-partner/assets/splash.svg",
+    "splashLogo": "branding/brands/sample-partner/assets/app_icon.svg"
+  },
+  "localization": {
+    "defaultLocale": "en-IN",
+    "supportedLocales": [
+      "en-IN"
+    ]
+  },
+  "features": {
+    "mobileRecharge": true,
+    "dthRecharge": true,
+    "transactionHistory": true,
+    "offers": false
+  },
+  "tagline": "Payments, Made Simpler."
+}

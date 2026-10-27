@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ThogaiPay.App.Views.Authentication.LoginPage"
+    Shell.NavBarIsVisible="False"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{DynamicResource SurfaceDefault}">
+
+    <Grid x:Name="PageRoot">
+        <Image Source="splashbackground.jpg"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               Opacity="0.95"
+               InputTransparent="True" />
+
+        <ScrollView>
+            <Grid Padding="24,22,24,28"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  RowSpacing="0">
+
+                <!-- Language selector stays brand-neutral and accessible. -->
+                <HorizontalStackLayout Grid.Row="0"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start"
+                                       Spacing="8">
+                    <Picker x:Name="LanguagePicker"
+                            Title="Language"
+                            WidthRequest="142"
+                            HeightRequest="44"
+                            FontSize="14"
+                            TextColor="{DynamicResource BrandPrimary}"
+                            BackgroundColor="#F7FAFF"
+                            SelectedIndex="0"
+                            SelectedIndexChanged="OnLanguageChanged"
+                            SemanticProperties.Description="Choose app language">
+                        <Picker.Items>
+                            <x:String>English</x:String>
+                            <x:String>தமிழ்</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </HorizontalStackLayout>
+
+                <Image Grid.Row="1"
+                       Source="brandlogo.png"
+                       HeightRequest="142"
+                       WidthRequest="340"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Margin="0,6,0,4"
+                       SemanticProperties.Description="ThogaiPay brand logo and Tamil tagline" />
+
+                <Image Grid.Row="2"
+                       Source="loginsecurityillustration.svg"
+                       HeightRequest="178"
+                       WidthRequest="250"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Margin="0,2,0,0"
+                       SemanticProperties.Description="Secure mobile login illustration" />
+
+                <VerticalStackLayout Grid.Row="3"
+                                     Spacing="4"
+                                     HorizontalOptions="Fill"
+                                     Margin="0,0,0,24">
+                    <Label Text="{Binding WelcomeTitle}"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource BrandPrimary}"
+                           HorizontalTextAlignment="Center"
+                           SemanticProperties.HeadingLevel="Level1" />
+                    <Label Text="{Binding LoginSubtitle}"
+                           FontSize="16"
+                           TextColor="{DynamicResource TextSecondary}"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="4" Spacing="8" Margin="0,0,0,18">
+                    <Border Stroke="{DynamicResource InputBorder}"
+                            StrokeThickness="1.4"
+                            BackgroundColor="#F9FBFF"
+                            Padding="16,2"
+                            HeightRequest="66"
+                            StrokeShape="RoundRectangle 34">
+                        <Grid ColumnDefinitions="36,*" ColumnSpacing="12">
+                            <Label Text="▯"
+                                   FontSize="30"
+                                   TextColor="{DynamicResource BrandPrimary}"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   SemanticProperties.Description="Mobile phone" />
+                            <Entry Grid.Column="1"
+                                   x:Name="MobileEntry"
+                                   Text="{Binding MobileNumber}"
+                                   Placeholder="{Binding MobilePlaceholder}"
+                                   Keyboard="Telephone"
+                                   MaxLength="10"
+                                   FontSize="18"
+                                   TextColor="{DynamicResource TextPrimary}"
+                                   PlaceholderColor="{DynamicResource TextPlaceholder}"
+                                   BackgroundColor="Transparent"
+                                   VerticalOptions="Center"
+                                   ClearButtonVisibility="WhileEditing"
+                                   ReturnType="Go"
+                                   ReturnCommand="{Binding ContinueCommand}"
+                                   SemanticProperties.Description="Enter your 10-digit mobile number" />
+                        </Grid>
+                    </Border>
+                    <Label Text="{Binding Message}"
+                           IsVisible="{Binding HasMessage}"
+                           TextColor="{Binding MessageColor}"
+                           FontSize="12"
+                           Margin="8,0,8,0" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="5" Spacing="18" Margin="0,0,0,18">
+                    <Button Text="{Binding ContinueText}"
+                            Command="{Binding ContinueCommand}"
+                            HeightRequest="58"
+                            CornerRadius="30"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="{DynamicResource ActionPrimaryForeground}"
+                            BackgroundColor="{DynamicResource ActionPrimaryBackground}"
+                            BorderColor="{DynamicResource BrandSecondary}"
+                            BorderWidth="2"
+                            SemanticProperties.Hint="Validate your mobile number to continue" />
+
+                    <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="18" Margin="18,0">
+                        <BoxView Grid.Column="0" HeightRequest="1" Color="{DynamicResource BorderDefault}" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="{Binding OrText}" FontSize="16" TextColor="{DynamicResource TextSecondary}" VerticalOptions="Center" />
+                        <BoxView Grid.Column="2" HeightRequest="1" Color="{DynamicResource BorderDefault}" VerticalOptions="Center" />
+                    </Grid>
+
+                    <Button Text="{Binding CreateAccountText}"
+                            Command="{Binding CreateAccountCommand}"
+                            HeightRequest="54"
+                            CornerRadius="28"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            TextColor="{DynamicResource BrandPrimary}"
+                            BackgroundColor="#FFFFFF"
+                            BorderColor="{DynamicResource BrandPrimary}"
+                            BorderWidth="1.4" />
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout Grid.Row="6"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Spacing="10"
+                                       Margin="0,0,0,12">
+                    <Label Text="✓"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource StatusSuccess}"
+                           VerticalOptions="Center" />
+                    <Label Text="{Binding TrustText}"
+                           FontSize="15"
+                           TextColor="{DynamicResource TextSecondary}"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <Label Grid.Row="7"
+                       Text="Your trust matters. Your data stays protected."
+                       FontSize="11"
+                       TextColor="{DynamicResource TextSubtitle}"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,2,0,0" />
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ThogaiPay.Controls.SoftPillBottomBar"
+    x:Name="BarRoot"
+    HeightRequest="98"
+    MinimumHeightRequest="98">
+
+    <Grid Padding="12,0,12,3">
+        <Border Margin="0,18,0,0" HeightRequest="72"
+                Stroke="#80FFFFFF" StrokeThickness="1.2"
+                StrokeShape="RoundRectangle 36" VerticalOptions="Start">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#0759D8" Offset="0.0" />
+                    <GradientStop Color="#0878E8" Offset="0.22" />
+                    <GradientStop Color="#04B7C8" Offset="0.48" />
+                    <GradientStop Color="#07965B" Offset="0.73" />
+                    <GradientStop Color="#F59E0B" Offset="1.0" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid Padding="8,6" ColumnDefinitions="*,*,72,*,*" ColumnSpacing="2">
+                <!-- Home -->
+                <Border Grid.Column="0" BackgroundColor="{Binding Source={x:Reference BarRoot}, Path=HomeBackground}"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 26" Padding="3,4">
+                    <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="{Binding Source={x:Reference BarRoot}, Path=HomeIconSource}" WidthRequest="24" HeightRequest="24" Aspect="AspectFit"/>
+                        <Label Text="Home" FontSize="11" FontAttributes="Bold"
+                               TextColor="{Binding Source={x:Reference BarRoot}, Path=HomeColor}"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HomeCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <!-- Recharge -->
+                <Border Grid.Column="1" BackgroundColor="{Binding Source={x:Reference BarRoot}, Path=RechargeBackground}"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 26" Padding="3,4">
+                    <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="{Binding Source={x:Reference BarRoot}, Path=RechargeIconSource}" WidthRequest="24" HeightRequest="24" Aspect="AspectFit"/>
+                        <Label Text="Recharge" FontSize="11" FontAttributes="Bold"
+                               TextColor="{Binding Source={x:Reference BarRoot}, Path=RechargeColor}"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=RechargeCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <Grid Grid.Column="2" />
+                <!-- History -->
+                <Border Grid.Column="3" BackgroundColor="{Binding Source={x:Reference BarRoot}, Path=HistoryBackground}"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 26" Padding="3,4">
+                    <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="{Binding Source={x:Reference BarRoot}, Path=HistoryIconSource}" WidthRequest="24" HeightRequest="24" Aspect="AspectFit"/>
+                        <Label Text="History" FontSize="11" FontAttributes="Bold"
+                               TextColor="{Binding Source={x:Reference BarRoot}, Path=HistoryColor}"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HistoryCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <!-- Profile -->
+                <Border Grid.Column="4" BackgroundColor="{Binding Source={x:Reference BarRoot}, Path=ProfileBackground}"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 26" Padding="3,4">
+                    <VerticalStackLayout InputTransparent="True" Spacing="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="{Binding Source={x:Reference BarRoot}, Path=ProfileIconSource}" WidthRequest="24" HeightRequest="24" Aspect="AspectFit"/>
+                        <Label Text="Profile" FontSize="11" FontAttributes="Bold"
+                               TextColor="{Binding Source={x:Reference BarRoot}, Path=ProfileColor}"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=ProfileCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Centre logo is the branded Home shortcut -->
+        <Border WidthRequest="76" HeightRequest="76" BackgroundColor="White"
+                Stroke="#D8F0FF" StrokeThickness="3.5" StrokeShape="RoundRectangle 38"
+                HorizontalOptions="Center" VerticalOptions="Start">
+            <Image Source="thogaipay_mark.png" WidthRequest="57" HeightRequest="57"
+                   Aspect="AspectFit" InputTransparent="True"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={x:Reference BarRoot}, Path=HomeCommand}" />
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentView>

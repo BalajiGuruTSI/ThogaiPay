@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:ThogaiPay.App.Shared.Controls.Buttons"
+             xmlns:navigation="clr-namespace:ThogaiPay.App.Shared.Controls.Navigation"
+             x:Class="ThogaiPay.App.Features.Auth.Views.OtpVerificationPage"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#FFFFFF">
+
+    <Grid x:Name="PageRoot" IsClippedToBounds="True">
+        <Image Source="splash_background.jpg"
+               Aspect="AspectFill"
+               Opacity="0.72"
+               InputTransparent="True" />
+
+        <ScrollView VerticalScrollBarVisibility="Never"
+                    HorizontalScrollBarVisibility="Never">
+            <Grid Padding="24,16,24,28"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  RowSpacing="0">
+
+                <navigation:BackNavigationButton Grid.Row="0"
+                                                 HorizontalOptions="Start"
+                                                 Clicked="OnBackButtonClicked" />
+
+                <Image Grid.Row="1"
+                       Source="thogaipay_brand_horizontal_logo.png"
+                       HeightRequest="88"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Margin="0,4,0,0"
+                       SemanticProperties.Description="ThogaiPay logo and Tamil tagline" />
+
+                <Image Grid.Row="2"
+                       Source="otp_verification_security.png"
+                       HeightRequest="238"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       WidthRequest="360"
+                       Margin="0,0,0,0"
+                       SemanticProperties.Description="Phone, OTP message and secure lock illustration" />
+
+                <Label Grid.Row="3"
+                       Text="Enter OTP"
+                       FontSize="34"
+                       FontAttributes="Bold"
+                       TextColor="#101F50"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,2" />
+
+                <Label Grid.Row="4"
+                       Text="We've sent a 6-digit OTP to"
+                       FontSize="17"
+                       TextColor="#5B6884"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,16" />
+
+                <!-- Tappable number card with a separate edit affordance -->
+                <Border Grid.Row="5"
+                        BackgroundColor="#EEF6FF"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 28"
+                        Padding="16,12"
+                        Margin="0,0,0,0">
+                    <Grid ColumnDefinitions="26,*,44" ColumnSpacing="12">
+                        <Image Source="phone.png"
+                               WidthRequest="22"
+                               HeightRequest="26"
+                               Aspect="AspectFit"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Text="{Binding MaskedMobileNumber}"
+                               FontSize="19"
+                               FontAttributes="Bold"
+                               TextColor="#101F50"
+                               VerticalTextAlignment="Center"
+                               LineBreakMode="NoWrap" />
+                        <Border Grid.Column="2"
+                                BackgroundColor="#FFFFFF"
+                                Stroke="#D9E7FA"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14"
+                                Padding="0"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Label Text="✎"
+                                   FontSize="21"
+                                   TextColor="#0759E8"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center" />
+                        </Border>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEditNumberClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
+
+                <!-- Each digit has its own focusable Entry. Focused cell gets a blue outline. -->
+                <Grid Grid.Row="6"
+                      Margin="0,28,0,0"
+                      HeightRequest="72">
+                    <Grid ColumnDefinitions="*,*,*,*,*,*" ColumnSpacing="7">
+                        <Border x:Name="OtpBoxBorder1" Grid.Column="0" Stroke="#9EADC6" StrokeThickness="1.4" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Entry x:Name="OtpBox1" TextChanged="OnOtpDigitChanged" Focused="OnOtpDigitFocused" Unfocused="OnOtpDigitUnfocused" Completed="OnOtpDigitCompleted" Keyboard="Numeric" MaxLength="1" FontSize="27" FontAttributes="Bold" TextColor="#101F50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent" Margin="0" Padding="0" />
+                        </Border>
+                        <Border x:Name="OtpBoxBorder2" Grid.Column="1" Stroke="#9EADC6" StrokeThickness="1.4" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Entry x:Name="OtpBox2" TextChanged="OnOtpDigitChanged" Focused="OnOtpDigitFocused" Unfocused="OnOtpDigitUnfocused" Completed="OnOtpDigitCompleted" Keyboard="Numeric" MaxLength="1" FontSize="27" FontAttributes="Bold" TextColor="#101F50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent" Margin="0" Padding="0" />
+                        </Border>
+                        <Border x:Name="OtpBoxBorder3" Grid.Column="2" Stroke="#9EADC6" StrokeThickness="1.4" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Entry x:Name="OtpBox3" TextChanged="OnOtpDigitChanged" Focused="OnOtpDigitFocused" Unfocused="OnOtpDigitUnfocused" Completed="OnOtpDigitCompleted" Keyboard="Numeric" MaxLength="1" FontSize="27" FontAttributes="Bold" TextColor="#101F50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent" Margin="0" Padding="0" />
+                        </Border>
+                        <Border x:Name="OtpBoxBorder4" Grid.Column="3" Stroke="#9EADC6" StrokeThickness="1.4" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Entry x:Name="OtpBox4" TextChanged="OnOtpDigitChanged" Focused="OnOtpDigitFocused" Unfocused="OnOtpDigitUnfocused" Completed="OnOtpDigitCompleted" Keyboard="Numeric" MaxLength="1" FontSize="27" FontAttributes="Bold" TextColor="#101F50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent" Margin="0" Padding="0" />
+                        </Border>
+                        <Border x:Name="OtpBoxBorder5" Grid.Column="4" Stroke="#9EADC6" StrokeThickness="1.4" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Entry x:Name="OtpBox5" TextChanged="OnOtpDigitChanged" Focused="OnOtpDigitFocused" Unfocused="OnOtpDigitUnfocused" Completed="OnOtpDigitCompleted" Keyboard="Numeric" MaxLength="1" FontSize="27" FontAttributes="Bold" TextColor="#101F50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent" Margin="0" Padding="0" />
+                        </Border>
+                        <Border x:Name="OtpBoxBorder6" Grid.Column="5" Stroke="#9EADC6" StrokeThickness="1.4" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14">
+                            <Entry x:Name="OtpBox6" TextChanged="OnOtpDigitChanged" Focused="OnOtpDigitFocused" Unfocused="OnOtpDigitUnfocused" Completed="OnOtpDigitCompleted" Keyboard="Numeric" MaxLength="1" FontSize="27" FontAttributes="Bold" TextColor="#101F50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent" Margin="0" Padding="0" />
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <HorizontalStackLayout Grid.Row="7"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Spacing="12"
+                                       Margin="0,22,0,0">
+                    <Label Text="{Binding CountdownText}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#101F50"
+                           VerticalTextAlignment="Center" />
+                    <Label Text="Resend OTP"
+                           FontSize="16"
+                           TextColor="{Binding ResendTextColor}"
+                           VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnResendClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+
+                <VerticalStackLayout Grid.Row="8" Spacing="18" Margin="0,28,0,0">
+                    <Label Text="{Binding Message}"
+                           IsVisible="{Binding HasMessage}"
+                           TextColor="{Binding MessageColor}"
+                           FontSize="13"
+                           HorizontalTextAlignment="Center" />
+                    <buttons:CTAButton Text="Verify &amp; Continue"
+                                       BusyText="Verifying…"
+                                       Command="{Binding VerifyCommand}"
+                                       IsBusy="{Binding IsVerifying}"
+                                       Variant="BrandedPrimary"
+                                       TrailingIcon="→"
+                                       HeightRequest="64"
+                                       AccessibilityLabel="Verify one-time password"
+                                       AutomationIdentifier="Otp_Verify" />
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Label Text="✓"
+                               FontSize="25"
+                               TextColor="#16A34A"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="Secure &amp; Encrypted"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#5B6884"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <Label Text="Demo OTP: 123456"
+                           FontSize="12"
+                           TextColor="#7C879D"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

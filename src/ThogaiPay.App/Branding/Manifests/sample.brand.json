@@ -1,14 +1,28 @@
 {
-  "brandId": "thogaipay-default",
+  "brandId": "thogaipay",
   "displayName": "ThogaiPay",
-  "appId": "com.companyname.thogaipay.app",
+  "appId": "in.thogaipay.app",
   "urlScheme": "thogaipay",
   "colors": {
-    "primary": "#512BD4",
-    "secondary": "#DFD8F7",
+    "primary": "#101F50",
+    "secondary": "#F59E0B",
+    "success": "#16A34A",
     "surface": "#FFFFFF",
-    "background": "#F8F8F8",
-    "success": "#2E7D32",
-    "warning": "#ED6C02"
+    "accentBlue": "#2563EB",
+    "accentCyan": "#06B6D4"
+  },
+  "assets": {
+    "appIcon": "src/ThogaiPay.App/Resources/AppIcon/thogaiappicon.png",
+    "splash": "src/ThogaiPay.App/Resources/Splash/splash.svg"
+  },
+  "localization": {
+    "defaultLocale": "en-IN",
+    "supportedLocales": ["en-IN", "ta-IN"]
+  },
+  "features": {
+    "mobileRecharge": true,
+    "dthRecharge": true,
+    "transactionHistory": true,
+    "offers": true
   }
 }

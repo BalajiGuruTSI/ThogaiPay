@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ThogaiPay.App.Shared.Controls.Buttons.CTAButton"
+    x:Name="Root"
+    HorizontalOptions="Fill"
+    HeightRequest="56">
+
+    <Border x:Name="AccentSurface"
+            Background="{DynamicResource CTAAccentBrush}"
+            StrokeThickness="0"
+            Padding="0,0,0,5"
+            StrokeShape="RoundRectangle 30">
+        <Border x:Name="ButtonSurface"
+                Background="{DynamicResource CTAPrimaryGradient}"
+                Stroke="{DynamicResource CTAPrimaryBorder}"
+                StrokeThickness="0"
+                Padding="14,4"
+                StrokeShape="RoundRectangle 28">
+            <Grid>
+                <Button x:Name="ActionButton"
+                        Text=""
+                        BackgroundColor="Transparent"
+                        BorderWidth="0"
+                        Padding="0"
+                        Command="{Binding Command, Source={x:Reference Root}}"
+                        CommandParameter="{Binding CommandParameter, Source={x:Reference Root}}"
+                        AutomationId="{Binding AutomationIdentifier, Source={x:Reference Root}}"
+                        SemanticProperties.Description="{Binding AccessibilityLabel, Source={x:Reference Root}}"
+                        SemanticProperties.Hint="{Binding AccessibilityHint, Source={x:Reference Root}}" />
+
+                <HorizontalStackLayout x:Name="ContentLayout"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Spacing="10"
+                                       InputTransparent="True">
+                    <Image x:Name="LeadingIconImage"
+                           Source="{Binding LeadingIconSource, Source={x:Reference Root}}"
+                           WidthRequest="22"
+                           HeightRequest="22"
+                           Aspect="AspectFit"
+                           VerticalOptions="Center"
+                           IsVisible="False" />
+                    <Label x:Name="LeadingIconLabel"
+                           Text="{Binding LeadingIcon, Source={x:Reference Root}}"
+                           FontSize="20"
+                           TextColor="{DynamicResource CTAPrimaryForeground}"
+                           VerticalOptions="Center"
+                           IsVisible="False" />
+                    <ActivityIndicator x:Name="ProgressIndicator"
+                                       IsRunning="{Binding IsBusy, Source={x:Reference Root}}"
+                                       IsVisible="{Binding IsBusy, Source={x:Reference Root}}"
+                                       Color="{DynamicResource CTAPrimaryForeground}"
+                                       WidthRequest="20"
+                                       HeightRequest="20"
+                                       VerticalOptions="Center" />
+                    <Label x:Name="ActionText"
+                           Text="{Binding Text, Source={x:Reference Root}}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource CTAPrimaryForeground}"
+                           VerticalTextAlignment="Center" />
+                    <Label x:Name="TrailingIconLabel"
+                           Text="{Binding TrailingIcon, Source={x:Reference Root}}"
+                           FontSize="22"
+                           TextColor="{DynamicResource CTAPrimaryForeground}"
+                           VerticalOptions="Center"
+                           IsVisible="False" />
+                    <Label x:Name="BusyTextLabel"
+                           Text="{Binding BusyText, Source={x:Reference Root}}"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource CTAPrimaryForeground}"
+                           VerticalTextAlignment="Center"
+                           IsVisible="False" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
+    </Border>
+</ContentView>

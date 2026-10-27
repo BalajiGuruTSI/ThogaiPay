@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThogaiPay.Controls.HomeRecentRechargesSection"
+             xmlns:controls="clr-namespace:ThogaiPay.Controls">
+    <VerticalStackLayout Spacing="12">
+        <Grid ColumnDefinitions="*,Auto" Margin="18,0,18,0">
+            <Label Text="Recent Recharges" FontSize="20" FontAttributes="Bold" TextColor="#101D5A" VerticalOptions="Center"/>
+            <Label Grid.Column="1" Text="View all  ›" FontSize="14" TextColor="#075BFF" VerticalOptions="Center">
+                <Label.GestureRecognizers><TapGestureRecognizer Tapped="OnViewAllTapped"/></Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout Padding="16,0,16,6" Spacing="12">
+                <!-- Static sample records; replace this collection with API data when ready. -->
+                <Border WidthRequest="172" Padding="13" BackgroundColor="White" Stroke="#E2ECFC" StrokeThickness="1"
+                        StrokeShape="RoundRectangle 20">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="7">
+                            <Border WidthRequest="34" HeightRequest="34" BackgroundColor="#EAF3FF" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="7">
+                                <Image Source="mobile_recharge_icon.svg" Aspect="AspectFit"/>
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                <Label Text="MOBILE" FontSize="10" FontAttributes="Bold" TextColor="#0875FF"/>
+                                <Label Text="Prepaid" FontSize="10" TextColor="#7B88A9"/>
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="•••" FontSize="15" TextColor="#667394" VerticalOptions="Center"/>
+                        </Grid>
+                        <Label Text="Appa" FontSize="16" FontAttributes="Bold" TextColor="#101D5A"/>
+                        <Label Text="₹299" FontSize="25" FontAttributes="Bold" TextColor="#101D5A"/>
+                        <Label Text="12 Oct 2026  •  98765 43210" FontSize="10" TextColor="#6C789E" LineBreakMode="TailTruncation"/>
+                        <Border BackgroundColor="#DDF7E8" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="8,5">
+                            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                                <Label Text="✓" FontSize="12" FontAttributes="Bold" TextColor="#15803D"/>
+                                <Label Text="Successful" FontSize="11" FontAttributes="Bold" TextColor="#15803D"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                        <controls:CTAButton Text="Recharge again" Variant="Secondary" TrailingIcon="→" HeightRequest="44" Clicked="OnRechargeAgainTapped" AccessibilityLabel="Start a recharge using this recent connection" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border WidthRequest="172" Padding="13" BackgroundColor="White" Stroke="#E2ECFC" StrokeThickness="1"
+                        StrokeShape="RoundRectangle 20">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="7">
+                            <Border WidthRequest="34" HeightRequest="34" BackgroundColor="#F1ECFF" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="7">
+                                <Image Source="dth_recharge_icon.svg" Aspect="AspectFit"/>
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                <Label Text="DTH" FontSize="10" FontAttributes="Bold" TextColor="#6C4BE8"/>
+                                <Label Text="Television" FontSize="10" TextColor="#7B88A9"/>
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="•••" FontSize="15" TextColor="#667394" VerticalOptions="Center"/>
+                        </Grid>
+                        <Label Text="Home TV" FontSize="16" FontAttributes="Bold" TextColor="#101D5A"/>
+                        <Label Text="₹350" FontSize="25" FontAttributes="Bold" TextColor="#101D5A"/>
+                        <Label Text="10 Oct 2026  •  ID 4821" FontSize="10" TextColor="#6C789E" LineBreakMode="TailTruncation"/>
+                        <Border BackgroundColor="#DDF7E8" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="8,5">
+                            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                                <Label Text="✓" FontSize="12" FontAttributes="Bold" TextColor="#15803D"/>
+                                <Label Text="Successful" FontSize="11" FontAttributes="Bold" TextColor="#15803D"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                        <controls:CTAButton Text="Recharge again" Variant="Secondary" TrailingIcon="→" HeightRequest="44" Clicked="OnRechargeAgainTapped" AccessibilityLabel="Start a recharge using this recent connection" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border WidthRequest="172" Padding="13" BackgroundColor="White" Stroke="#E2ECFC" StrokeThickness="1"
+                        StrokeShape="RoundRectangle 20">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="7">
+                            <Border WidthRequest="34" HeightRequest="34" BackgroundColor="#EAF3FF" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="7">
+                                <Image Source="mobile_recharge_icon.svg" Aspect="AspectFit"/>
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                <Label Text="MOBILE" FontSize="10" FontAttributes="Bold" TextColor="#0875FF"/>
+                                <Label Text="Prepaid" FontSize="10" TextColor="#7B88A9"/>
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="•••" FontSize="15" TextColor="#667394" VerticalOptions="Center"/>
+                        </Grid>
+                        <Label Text="Amma" FontSize="16" FontAttributes="Bold" TextColor="#101D5A"/>
+                        <Label Text="₹179" FontSize="25" FontAttributes="Bold" TextColor="#101D5A"/>
+                        <Label Text="08 Oct 2026  •  91234 56789" FontSize="10" TextColor="#6C789E" LineBreakMode="TailTruncation"/>
+                        <Border BackgroundColor="#DDF7E8" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="8,5">
+                            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                                <Label Text="✓" FontSize="12" FontAttributes="Bold" TextColor="#15803D"/>
+                                <Label Text="Successful" FontSize="11" FontAttributes="Bold" TextColor="#15803D"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                        <controls:CTAButton Text="Recharge again" Variant="Secondary" TrailingIcon="→" HeightRequest="44" Clicked="OnRechargeAgainTapped" AccessibilityLabel="Start a recharge using this recent connection" />
+                    </VerticalStackLayout>
+                </Border>
+            </HorizontalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentView>

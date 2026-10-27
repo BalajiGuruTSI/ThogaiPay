@@ -1,0 +1,33 @@
+{
+  "brandId": "thogaipay",
+  "displayName": "ThogaiPay",
+  "appId": "in.thogaipay.app",
+  "urlScheme": "thogaipay",
+  "colors": {
+    "primary": "#101F50",
+    "secondary": "#F59E0B",
+    "success": "#16A34A",
+    "surface": "#FFFFFF",
+    "accentBlue": "#2563EB",
+    "accentCyan": "#06B6D4"
+  },
+  "assets": {
+    "appIcon": "branding/brands/thogaipay/assets/app_icon.png",
+    "splash": "src/ThogaiPay.App/Resources/Splash/splash.svg",
+    "splashLogo": "branding/brands/thogaipay/assets/thogaipay_brand_lockup.png"
+  },
+  "localization": {
+    "defaultLocale": "en-IN",
+    "supportedLocales": [
+      "en-IN",
+      "ta-IN"
+    ]
+  },
+  "features": {
+    "mobileRecharge": true,
+    "dthRecharge": true,
+    "transactionHistory": true,
+    "offers": true
+  },
+  "tagline": "Every Payment. One Simple Touch."
+}
